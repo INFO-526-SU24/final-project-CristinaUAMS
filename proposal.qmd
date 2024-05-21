@@ -1,11 +1,11 @@
 ---
-title: "Proposal title"
-subtitle: "Proposal"
+title: "The Great Coffee Caper"
+subtitle: "Exploring Discernment and Appreciation of Different Roasts"
 author: 
-  - name: "Team Name"
+  - name: "Cristina Lafuente"
     affiliations:
       - name: "School of Information, University of Arizona"
-description: "Project description"
+description: "Evaluation of data recovered from coffee taste test"
 format:
   html:
     code-tools: true
@@ -15,13 +15,14 @@ format:
 editor: visual
 code-annotations: hover
 execute:
-  warning: false
+  warning: true
 ---
 
 ```{r}
 #| label: load-pkgs
 #| message: false
 library(tidyverse)
+library(here)
 ```
 
 ## Dataset
@@ -29,16 +30,76 @@ library(tidyverse)
 ```{r}
 #| label: load-dataset
 #| message: false
+
+coffeeData <- readr::read_csv(('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-05-14/coffee_survey.csv'))
 ```
 
-A brief description of your dataset including its provenance, dimensions, etc. as well as the reason why you chose this dataset.
+The Coffee Data comes from a coffee taste test held on YouTube in Oct 2023. Data was self reported by participants. It was aggregated by a data blogger named Robert McKeon Aloe who analyzed the data the following month.
+
+The Dimensions of the data are:
+
+```{r}
+dim(coffeeData)
+```
+
+as well as the reason why you chose this dataset.
 
 Make sure to load the data and use inline code for some of this information.
 
 ## Questions
 
-The two questions you want to answer.
+Question 1:
+
+Do people tend to quantify acidity and bitterness in coffee as acidity and bitterness distinctly and correctly?
+
+Question 2:
+
+Does political affiliation play any part in coffee preference?
 
 ## Analysis plan
 
 -   A plan for answering each of the questions including the variables involved, variables to be created (if any), external data to be merged in (if any).
+
+```{=html}
+<table>
+  <caption>
+    <span data-qmd="Weekly Plan of Attack Table: Last updated: 5/21/2024">
+    </span>
+  </caption>
+  
+  <thead>
+    <tr>
+      <th>Task Name</th>
+      <th>Status</th>
+      <th>Assignee</th>
+      <th>Due</th>
+      <th>Priority</th>
+      <th>Summary</th>
+    </tr>
+  </thead>
+  <tr>
+    <td>**</td>
+    <td>**</td>
+    <td>Cristina Lafuente</td>
+    <td>Wednesday, May 29: 5pm</td>
+    <td>Low</td>
+    <td>**</td>
+  </tr>
+  <tr>
+    <td>**</td>
+    <td>**</td>
+    <td>Cristina Lafuente</td>
+    <td>Wednesday, May 29: 5pm</td>
+    <td>Moderate</td>
+    <td>**</td>
+  </tr>
+  <tr>
+    <td>**</td>
+    <td>**</td>
+    <td>Cristina Lafuente</td>
+    <td>Wednesday, May 29: 5pm</td>
+    <td>High</td>
+    <td>**</td>
+  </tr>
+</table>
+```
