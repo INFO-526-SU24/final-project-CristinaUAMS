@@ -4,14 +4,14 @@
     "href": "proposal.html",
     "title": "The Great Coffee Caper",
     "section": "",
-    "text": "library(tidyverse)\nlibrary(here)"
+    "text": "if (!require(\"pacman\")) \n  install.packages(\"pacman\")\n\n# use this line for installing/loading\npacman::p_load(dplyr,\n               here,\n               scales,\n               tidyverse,\n               viridis)\n\ndevtools::install_github(\"tidyverse/dsbox\")"
   },
   {
     "objectID": "proposal.html#dataset",
     "href": "proposal.html#dataset",
     "title": "The Great Coffee Caper",
     "section": "Dataset",
-    "text": "Dataset\n\ncoffeeData &lt;- readr::read_csv(('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-05-14/coffee_survey.csv'))\n\nThe Coffee Data comes from a coffee taste test held on YouTube in Oct 2023. Data was self reported by participants. It was aggregated by a data blogger named Robert McKeon Aloe who analyzed the data the following month.\nThe Dimensions of the data are:\n\ndim(coffeeData)\n\n[1] 4042   57\n\n\nas well as the reason why you chose this dataset.\nMake sure to load the data and use inline code for some of this information."
+    "text": "Dataset\n\ncoffeeData &lt;- readr::read_csv(('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-05-14/coffee_survey.csv'))\n\nThe Coffee Data comes from a coffee taste test held on YouTube in Oct 2023. Data was self reported by participants. It was aggregated by a data blogger named Robert McKeon Aloe who analyzed the data the following month.\nThe Dimensions of the data are:\n\ndim(coffeeData)\n\n[1] 4042   57\n\n\nI enjoy coffee very much! Too much? Probably not. I have 6 different coffee brewing apparatuses in my kitchen.\nMake sure to load the data and use inline code for some of this information."
   },
   {
     "objectID": "proposal.html#questions",
@@ -25,7 +25,7 @@
     "href": "proposal.html#analysis-plan",
     "title": "The Great Coffee Caper",
     "section": "Analysis plan",
-    "text": "Analysis plan\n\nA plan for answering each of the questions including the variables involved, variables to be created (if any), external data to be merged in (if any).\n\n\n\nWeekly Plan of Attack Table: Last updated: 5/21/2024\n\n\nTask Name\nStatus\nAssignee\nDue\nPriority\nSummary\n\n\n\n\n**\n**\nCristina Lafuente\nWednesday, May 29: 5pm\nLow\n**\n\n\n**\n**\nCristina Lafuente\nWednesday, May 29: 5pm\nModerate\n**\n\n\n**\n**\nCristina Lafuente\nWednesday, May 29: 5pm\nHigh\n**"
+    "text": "Analysis plan\n\nA plan for answering each of the questions including the variables involved, variables to be created (if any), external data to be merged in (if any).\n\n\n\nWeekly Plan of Attack Table: Last updated: 5/21/2024\n\n\nTask Name\nStatus\nAssignee\nDue\nPriority\nSummary\n\n\n\n\nAdd any extras\nin progress\nCristina Lafuente\nWednesday, May 29: 5pm\nLow\nPut in pictures, charts or plots to help viewers make sense of proposal\n\n\nFormat and Beautify\nin progress\nCristina Lafuente\nWednesday, May 29: 5pm\nModerate\nGo through and make sure that all formatting is nice\n\n\nAdd req'd info to proposal\nin progress\nCristina Lafuente\nWednesday, May 29: 5pm\nHigh\nFill in all required information"
   },
   {
     "objectID": "index.html",

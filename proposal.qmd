@@ -15,14 +15,27 @@ format:
 editor: visual
 code-annotations: hover
 execute:
-  warning: true
+  message: FALSE
+  warning: FALSE
 ---
 
 ```{r}
 #| label: load-pkgs
-#| message: false
-library(tidyverse)
-library(here)
+#| message: FALSE
+
+
+if (!require("pacman")) 
+  install.packages("pacman")
+
+# use this line for installing/loading
+pacman::p_load(dplyr,
+               here,
+               knitr,
+               scales,
+               tidyverse,
+               viridis)
+
+devtools::install_github("tidyverse/dsbox")
 ```
 
 ## Dataset
@@ -42,7 +55,18 @@ The Dimensions of the data are:
 dim(coffeeData)
 ```
 
-as well as the reason why you chose this dataset.
+The reason I selected this data set is because I enjoy coffee very much! Too much? Probably not. I have 6 different coffee brewing apparatuses in my kitchen.
+
+```{r}
+mokaPot <-(here("images/mokaPot.png"))
+espressoMaker <- (here("images/espressoMachine.png"))
+frenchPress <- (here("images/frenchPress.png"))
+pod <- (here("images/kCup.png"))
+percolator <- (here("images/percolator.png"))
+pourOver <- (here("images/pourOver.png"))
+
+include_graphics(c(mokaPot, espressoMaker, frenchPress, pod, percolator, pourOver))
+```
 
 Make sure to load the data and use inline code for some of this information.
 
@@ -63,7 +87,7 @@ Does political affiliation play any part in coffee preference?
 ```{=html}
 <table>
   <caption>
-    <span data-qmd="Weekly Plan of Attack Table: Last updated: 5/21/2024">
+    <span data-qmd="Weekly Plan of Attack Table: Last updated: 5/28/2024">
     </span>
   </caption>
   
@@ -78,28 +102,28 @@ Does political affiliation play any part in coffee preference?
     </tr>
   </thead>
   <tr>
-    <td>**</td>
-    <td>**</td>
+    <td>Add any extras</td>
+    <td>in progress</td>
     <td>Cristina Lafuente</td>
     <td>Wednesday, May 29: 5pm</td>
     <td>Low</td>
-    <td>**</td>
+    <td>Put in pictures, charts or plots to help viewers make sense of proposal</td>
   </tr>
   <tr>
-    <td>**</td>
-    <td>**</td>
+    <td>Format and Beautify</td>
+    <td>in progress</td>
     <td>Cristina Lafuente</td>
     <td>Wednesday, May 29: 5pm</td>
     <td>Moderate</td>
-    <td>**</td>
+    <td>Go through and make sure that all formatting is nice </td>
   </tr>
   <tr>
-    <td>**</td>
-    <td>**</td>
+    <td>Add req'd info to proposal</td>
+    <td>in progress</td>
     <td>Cristina Lafuente</td>
     <td>Wednesday, May 29: 5pm</td>
     <td>High</td>
-    <td>**</td>
+    <td>Fill in all required information </td>
   </tr>
 </table>
 ```

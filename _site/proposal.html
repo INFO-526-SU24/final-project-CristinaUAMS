@@ -4802,8 +4802,17 @@ vertical-align: -.125em;
 
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(here)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;pacman&quot;</span>)) </span>
+<span id="cb1-2"><a href="#cb1-2"></a>  <span class="fu">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="co"># use this line for installing/loading</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(dplyr,</span>
+<span id="cb1-6"><a href="#cb1-6"></a>               here,</span>
+<span id="cb1-7"><a href="#cb1-7"></a>               scales,</span>
+<span id="cb1-8"><a href="#cb1-8"></a>               tidyverse,</span>
+<span id="cb1-9"><a href="#cb1-9"></a>               viridis)</span>
+<span id="cb1-10"><a href="#cb1-10"></a></span>
+<span id="cb1-11"><a href="#cb1-11"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;tidyverse/dsbox&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="dataset" class="level2">
 <h2 class="anchored" data-anchor-id="dataset">Dataset</h2>
@@ -4818,7 +4827,7 @@ vertical-align: -.125em;
 <pre><code>[1] 4042   57</code></pre>
 </div>
 </div>
-<p>as well as the reason why you chose this dataset.</p>
+<p>I enjoy coffee very much! Too much? Probably not. I have 6 different coffee brewing apparatuses in my kitchen.</p>
 <p>Make sure to load the data and use inline code for some of this information.</p>
 </section>
 <section id="questions" class="level2">
@@ -4848,28 +4857,28 @@ vertical-align: -.125em;
 </thead>
 <tbody>
 <tr class="odd">
-<td>**</td>
-<td>**</td>
+<td>Add any extras</td>
+<td>in progress</td>
 <td>Cristina Lafuente</td>
 <td>Wednesday, May 29: 5pm</td>
 <td>Low</td>
-<td>**</td>
+<td>Put in pictures, charts or plots to help viewers make sense of proposal</td>
 </tr>
 <tr class="even">
-<td>**</td>
-<td>**</td>
+<td>Format and Beautify</td>
+<td>in progress</td>
 <td>Cristina Lafuente</td>
 <td>Wednesday, May 29: 5pm</td>
 <td>Moderate</td>
-<td>**</td>
+<td>Go through and make sure that all formatting is nice</td>
 </tr>
 <tr class="odd">
-<td>**</td>
-<td>**</td>
+<td>Add req&#39;d info to proposal</td>
+<td>in progress</td>
 <td>Cristina Lafuente</td>
 <td>Wednesday, May 29: 5pm</td>
 <td>High</td>
-<td>**</td>
+<td>Fill in all required information</td>
 </tr>
 </tbody>
 </table>
@@ -5541,94 +5550,106 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb5-15"><a href="#cb5-15"></a><span class="an">editor:</span><span class="co"> visual</span></span>
 <span id="cb5-16"><a href="#cb5-16"></a><span class="an">code-annotations:</span><span class="co"> hover</span></span>
 <span id="cb5-17"><a href="#cb5-17"></a><span class="an">execute:</span></span>
-<span id="cb5-18"><a href="#cb5-18"></a><span class="co">  warning: true</span></span>
-<span id="cb5-19"><a href="#cb5-19"></a><span class="co">---</span></span>
-<span id="cb5-20"><a href="#cb5-20"></a></span>
-<span id="cb5-23"><a href="#cb5-23"></a><span class="in">```{r}</span></span>
-<span id="cb5-24"><a href="#cb5-24"></a><span class="co">#| label: load-pkgs</span></span>
-<span id="cb5-25"><a href="#cb5-25"></a><span class="co">#| message: false</span></span>
-<span id="cb5-26"><a href="#cb5-26"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb5-27"><a href="#cb5-27"></a><span class="fu">library</span>(here)</span>
-<span id="cb5-28"><a href="#cb5-28"></a><span class="in">```</span></span>
-<span id="cb5-29"><a href="#cb5-29"></a></span>
-<span id="cb5-30"><a href="#cb5-30"></a><span class="fu">## Dataset</span></span>
+<span id="cb5-18"><a href="#cb5-18"></a><span class="co">  message: FALSE</span></span>
+<span id="cb5-19"><a href="#cb5-19"></a><span class="co">  warning: FALSE</span></span>
+<span id="cb5-20"><a href="#cb5-20"></a><span class="co">---</span></span>
+<span id="cb5-21"><a href="#cb5-21"></a></span>
+<span id="cb5-24"><a href="#cb5-24"></a><span class="in">```{r}</span></span>
+<span id="cb5-25"><a href="#cb5-25"></a><span class="co">#| label: load-pkgs</span></span>
+<span id="cb5-26"><a href="#cb5-26"></a><span class="co">#| message: FALSE</span></span>
+<span id="cb5-27"><a href="#cb5-27"></a></span>
+<span id="cb5-28"><a href="#cb5-28"></a></span>
+<span id="cb5-29"><a href="#cb5-29"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;pacman&quot;</span>)) </span>
+<span id="cb5-30"><a href="#cb5-30"></a>  <span class="fu">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span>
 <span id="cb5-31"><a href="#cb5-31"></a></span>
-<span id="cb5-34"><a href="#cb5-34"></a><span class="in">```{r}</span></span>
-<span id="cb5-35"><a href="#cb5-35"></a><span class="co">#| label: load-dataset</span></span>
-<span id="cb5-36"><a href="#cb5-36"></a><span class="co">#| message: false</span></span>
-<span id="cb5-37"><a href="#cb5-37"></a></span>
-<span id="cb5-38"><a href="#cb5-38"></a>coffeeData <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>((<span class="st">&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-05-14/coffee_survey.csv&#39;</span>))</span>
-<span id="cb5-39"><a href="#cb5-39"></a><span class="in">```</span></span>
-<span id="cb5-40"><a href="#cb5-40"></a></span>
-<span id="cb5-41"><a href="#cb5-41"></a>The Coffee Data comes from a coffee taste test held on YouTube in Oct 2023. Data was self reported by participants. It was aggregated by a data blogger named Robert McKeon Aloe who analyzed the data the following month.</span>
-<span id="cb5-42"><a href="#cb5-42"></a></span>
-<span id="cb5-43"><a href="#cb5-43"></a>The Dimensions of the data are:</span>
-<span id="cb5-44"><a href="#cb5-44"></a></span>
-<span id="cb5-47"><a href="#cb5-47"></a><span class="in">```{r}</span></span>
-<span id="cb5-48"><a href="#cb5-48"></a><span class="fu">dim</span>(coffeeData)</span>
-<span id="cb5-49"><a href="#cb5-49"></a><span class="in">```</span></span>
-<span id="cb5-50"><a href="#cb5-50"></a></span>
-<span id="cb5-51"><a href="#cb5-51"></a>as well as the reason why you chose this dataset.</span>
+<span id="cb5-32"><a href="#cb5-32"></a><span class="co"># use this line for installing/loading</span></span>
+<span id="cb5-33"><a href="#cb5-33"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(dplyr,</span>
+<span id="cb5-34"><a href="#cb5-34"></a>               here,</span>
+<span id="cb5-35"><a href="#cb5-35"></a>               scales,</span>
+<span id="cb5-36"><a href="#cb5-36"></a>               tidyverse,</span>
+<span id="cb5-37"><a href="#cb5-37"></a>               viridis)</span>
+<span id="cb5-38"><a href="#cb5-38"></a></span>
+<span id="cb5-39"><a href="#cb5-39"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;tidyverse/dsbox&quot;</span>)</span>
+<span id="cb5-40"><a href="#cb5-40"></a><span class="in">```</span></span>
+<span id="cb5-41"><a href="#cb5-41"></a></span>
+<span id="cb5-42"><a href="#cb5-42"></a><span class="fu">## Dataset</span></span>
+<span id="cb5-43"><a href="#cb5-43"></a></span>
+<span id="cb5-46"><a href="#cb5-46"></a><span class="in">```{r}</span></span>
+<span id="cb5-47"><a href="#cb5-47"></a><span class="co">#| label: load-dataset</span></span>
+<span id="cb5-48"><a href="#cb5-48"></a><span class="co">#| message: false</span></span>
+<span id="cb5-49"><a href="#cb5-49"></a></span>
+<span id="cb5-50"><a href="#cb5-50"></a>coffeeData <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>((<span class="st">&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-05-14/coffee_survey.csv&#39;</span>))</span>
+<span id="cb5-51"><a href="#cb5-51"></a><span class="in">```</span></span>
 <span id="cb5-52"><a href="#cb5-52"></a></span>
-<span id="cb5-53"><a href="#cb5-53"></a>Make sure to load the data and use inline code for some of this information.</span>
+<span id="cb5-53"><a href="#cb5-53"></a>The Coffee Data comes from a coffee taste test held on YouTube in Oct 2023. Data was self reported by participants. It was aggregated by a data blogger named Robert McKeon Aloe who analyzed the data the following month.</span>
 <span id="cb5-54"><a href="#cb5-54"></a></span>
-<span id="cb5-55"><a href="#cb5-55"></a><span class="fu">## Questions</span></span>
+<span id="cb5-55"><a href="#cb5-55"></a>The Dimensions of the data are:</span>
 <span id="cb5-56"><a href="#cb5-56"></a></span>
-<span id="cb5-57"><a href="#cb5-57"></a>Question 1:</span>
-<span id="cb5-58"><a href="#cb5-58"></a></span>
-<span id="cb5-59"><a href="#cb5-59"></a>Do people tend to quantify acidity and bitterness in coffee as acidity and bitterness distinctly and correctly?</span>
-<span id="cb5-60"><a href="#cb5-60"></a></span>
-<span id="cb5-61"><a href="#cb5-61"></a>Question 2:</span>
+<span id="cb5-59"><a href="#cb5-59"></a><span class="in">```{r}</span></span>
+<span id="cb5-60"><a href="#cb5-60"></a><span class="fu">dim</span>(coffeeData)</span>
+<span id="cb5-61"><a href="#cb5-61"></a><span class="in">```</span></span>
 <span id="cb5-62"><a href="#cb5-62"></a></span>
-<span id="cb5-63"><a href="#cb5-63"></a>Does political affiliation play any part in coffee preference?</span>
+<span id="cb5-63"><a href="#cb5-63"></a>I enjoy coffee very much! Too much? Probably not. I have 6 different coffee brewing apparatuses in my kitchen.</span>
 <span id="cb5-64"><a href="#cb5-64"></a></span>
-<span id="cb5-65"><a href="#cb5-65"></a><span class="fu">## Analysis plan</span></span>
+<span id="cb5-65"><a href="#cb5-65"></a>Make sure to load the data and use inline code for some of this information.</span>
 <span id="cb5-66"><a href="#cb5-66"></a></span>
-<span id="cb5-67"><a href="#cb5-67"></a><span class="ss">-   </span>A plan for answering each of the questions including the variables involved, variables to be created (if any), external data to be merged in (if any).</span>
+<span id="cb5-67"><a href="#cb5-67"></a><span class="fu">## Questions</span></span>
 <span id="cb5-68"><a href="#cb5-68"></a></span>
-<span id="cb5-69"><a href="#cb5-69"></a><span class="in">```{=html}</span></span>
-<span id="cb5-70"><a href="#cb5-70"></a><span class="in">&lt;table&gt;</span></span>
-<span id="cb5-71"><a href="#cb5-71"></a><span class="in">  &lt;caption&gt;</span></span>
-<span id="cb5-72"><a href="#cb5-72"></a><span class="in">    &lt;span data-qmd=&quot;Weekly Plan of Attack Table: Last updated: 5/21/2024&quot;&gt;</span></span>
-<span id="cb5-73"><a href="#cb5-73"></a><span class="in">    &lt;/span&gt;</span></span>
-<span id="cb5-74"><a href="#cb5-74"></a><span class="in">  &lt;/caption&gt;</span></span>
-<span id="cb5-75"><a href="#cb5-75"></a><span class="in">  </span></span>
-<span id="cb5-76"><a href="#cb5-76"></a><span class="in">  &lt;thead&gt;</span></span>
-<span id="cb5-77"><a href="#cb5-77"></a><span class="in">    &lt;tr&gt;</span></span>
-<span id="cb5-78"><a href="#cb5-78"></a><span class="in">      &lt;th&gt;Task Name&lt;/th&gt;</span></span>
-<span id="cb5-79"><a href="#cb5-79"></a><span class="in">      &lt;th&gt;Status&lt;/th&gt;</span></span>
-<span id="cb5-80"><a href="#cb5-80"></a><span class="in">      &lt;th&gt;Assignee&lt;/th&gt;</span></span>
-<span id="cb5-81"><a href="#cb5-81"></a><span class="in">      &lt;th&gt;Due&lt;/th&gt;</span></span>
-<span id="cb5-82"><a href="#cb5-82"></a><span class="in">      &lt;th&gt;Priority&lt;/th&gt;</span></span>
-<span id="cb5-83"><a href="#cb5-83"></a><span class="in">      &lt;th&gt;Summary&lt;/th&gt;</span></span>
-<span id="cb5-84"><a href="#cb5-84"></a><span class="in">    &lt;/tr&gt;</span></span>
-<span id="cb5-85"><a href="#cb5-85"></a><span class="in">  &lt;/thead&gt;</span></span>
-<span id="cb5-86"><a href="#cb5-86"></a><span class="in">  &lt;tr&gt;</span></span>
-<span id="cb5-87"><a href="#cb5-87"></a><span class="in">    &lt;td&gt;**&lt;/td&gt;</span></span>
-<span id="cb5-88"><a href="#cb5-88"></a><span class="in">    &lt;td&gt;**&lt;/td&gt;</span></span>
-<span id="cb5-89"><a href="#cb5-89"></a><span class="in">    &lt;td&gt;Cristina Lafuente&lt;/td&gt;</span></span>
-<span id="cb5-90"><a href="#cb5-90"></a><span class="in">    &lt;td&gt;Wednesday, May 29: 5pm&lt;/td&gt;</span></span>
-<span id="cb5-91"><a href="#cb5-91"></a><span class="in">    &lt;td&gt;Low&lt;/td&gt;</span></span>
-<span id="cb5-92"><a href="#cb5-92"></a><span class="in">    &lt;td&gt;**&lt;/td&gt;</span></span>
-<span id="cb5-93"><a href="#cb5-93"></a><span class="in">  &lt;/tr&gt;</span></span>
-<span id="cb5-94"><a href="#cb5-94"></a><span class="in">  &lt;tr&gt;</span></span>
-<span id="cb5-95"><a href="#cb5-95"></a><span class="in">    &lt;td&gt;**&lt;/td&gt;</span></span>
-<span id="cb5-96"><a href="#cb5-96"></a><span class="in">    &lt;td&gt;**&lt;/td&gt;</span></span>
-<span id="cb5-97"><a href="#cb5-97"></a><span class="in">    &lt;td&gt;Cristina Lafuente&lt;/td&gt;</span></span>
-<span id="cb5-98"><a href="#cb5-98"></a><span class="in">    &lt;td&gt;Wednesday, May 29: 5pm&lt;/td&gt;</span></span>
-<span id="cb5-99"><a href="#cb5-99"></a><span class="in">    &lt;td&gt;Moderate&lt;/td&gt;</span></span>
-<span id="cb5-100"><a href="#cb5-100"></a><span class="in">    &lt;td&gt;**&lt;/td&gt;</span></span>
-<span id="cb5-101"><a href="#cb5-101"></a><span class="in">  &lt;/tr&gt;</span></span>
-<span id="cb5-102"><a href="#cb5-102"></a><span class="in">  &lt;tr&gt;</span></span>
-<span id="cb5-103"><a href="#cb5-103"></a><span class="in">    &lt;td&gt;**&lt;/td&gt;</span></span>
-<span id="cb5-104"><a href="#cb5-104"></a><span class="in">    &lt;td&gt;**&lt;/td&gt;</span></span>
-<span id="cb5-105"><a href="#cb5-105"></a><span class="in">    &lt;td&gt;Cristina Lafuente&lt;/td&gt;</span></span>
-<span id="cb5-106"><a href="#cb5-106"></a><span class="in">    &lt;td&gt;Wednesday, May 29: 5pm&lt;/td&gt;</span></span>
-<span id="cb5-107"><a href="#cb5-107"></a><span class="in">    &lt;td&gt;High&lt;/td&gt;</span></span>
-<span id="cb5-108"><a href="#cb5-108"></a><span class="in">    &lt;td&gt;**&lt;/td&gt;</span></span>
-<span id="cb5-109"><a href="#cb5-109"></a><span class="in">  &lt;/tr&gt;</span></span>
-<span id="cb5-110"><a href="#cb5-110"></a><span class="in">&lt;/table&gt;</span></span>
-<span id="cb5-111"><a href="#cb5-111"></a><span class="in">```</span></span>
+<span id="cb5-69"><a href="#cb5-69"></a>Question 1:</span>
+<span id="cb5-70"><a href="#cb5-70"></a></span>
+<span id="cb5-71"><a href="#cb5-71"></a>Do people tend to quantify acidity and bitterness in coffee as acidity and bitterness distinctly and correctly?</span>
+<span id="cb5-72"><a href="#cb5-72"></a></span>
+<span id="cb5-73"><a href="#cb5-73"></a>Question 2:</span>
+<span id="cb5-74"><a href="#cb5-74"></a></span>
+<span id="cb5-75"><a href="#cb5-75"></a>Does political affiliation play any part in coffee preference?</span>
+<span id="cb5-76"><a href="#cb5-76"></a></span>
+<span id="cb5-77"><a href="#cb5-77"></a><span class="fu">## Analysis plan</span></span>
+<span id="cb5-78"><a href="#cb5-78"></a></span>
+<span id="cb5-79"><a href="#cb5-79"></a><span class="ss">-   </span>A plan for answering each of the questions including the variables involved, variables to be created (if any), external data to be merged in (if any).</span>
+<span id="cb5-80"><a href="#cb5-80"></a></span>
+<span id="cb5-81"><a href="#cb5-81"></a><span class="in">```{=html}</span></span>
+<span id="cb5-82"><a href="#cb5-82"></a><span class="in">&lt;table&gt;</span></span>
+<span id="cb5-83"><a href="#cb5-83"></a><span class="in">  &lt;caption&gt;</span></span>
+<span id="cb5-84"><a href="#cb5-84"></a><span class="in">    &lt;span data-qmd=&quot;Weekly Plan of Attack Table: Last updated: 5/21/2024&quot;&gt;</span></span>
+<span id="cb5-85"><a href="#cb5-85"></a><span class="in">    &lt;/span&gt;</span></span>
+<span id="cb5-86"><a href="#cb5-86"></a><span class="in">  &lt;/caption&gt;</span></span>
+<span id="cb5-87"><a href="#cb5-87"></a><span class="in">  </span></span>
+<span id="cb5-88"><a href="#cb5-88"></a><span class="in">  &lt;thead&gt;</span></span>
+<span id="cb5-89"><a href="#cb5-89"></a><span class="in">    &lt;tr&gt;</span></span>
+<span id="cb5-90"><a href="#cb5-90"></a><span class="in">      &lt;th&gt;Task Name&lt;/th&gt;</span></span>
+<span id="cb5-91"><a href="#cb5-91"></a><span class="in">      &lt;th&gt;Status&lt;/th&gt;</span></span>
+<span id="cb5-92"><a href="#cb5-92"></a><span class="in">      &lt;th&gt;Assignee&lt;/th&gt;</span></span>
+<span id="cb5-93"><a href="#cb5-93"></a><span class="in">      &lt;th&gt;Due&lt;/th&gt;</span></span>
+<span id="cb5-94"><a href="#cb5-94"></a><span class="in">      &lt;th&gt;Priority&lt;/th&gt;</span></span>
+<span id="cb5-95"><a href="#cb5-95"></a><span class="in">      &lt;th&gt;Summary&lt;/th&gt;</span></span>
+<span id="cb5-96"><a href="#cb5-96"></a><span class="in">    &lt;/tr&gt;</span></span>
+<span id="cb5-97"><a href="#cb5-97"></a><span class="in">  &lt;/thead&gt;</span></span>
+<span id="cb5-98"><a href="#cb5-98"></a><span class="in">  &lt;tr&gt;</span></span>
+<span id="cb5-99"><a href="#cb5-99"></a><span class="in">    &lt;td&gt;Add any extras&lt;/td&gt;</span></span>
+<span id="cb5-100"><a href="#cb5-100"></a><span class="in">    &lt;td&gt;in progress&lt;/td&gt;</span></span>
+<span id="cb5-101"><a href="#cb5-101"></a><span class="in">    &lt;td&gt;Cristina Lafuente&lt;/td&gt;</span></span>
+<span id="cb5-102"><a href="#cb5-102"></a><span class="in">    &lt;td&gt;Wednesday, May 29: 5pm&lt;/td&gt;</span></span>
+<span id="cb5-103"><a href="#cb5-103"></a><span class="in">    &lt;td&gt;Low&lt;/td&gt;</span></span>
+<span id="cb5-104"><a href="#cb5-104"></a><span class="in">    &lt;td&gt;Put in pictures, charts or plots to help viewers make sense of proposal&lt;/td&gt;</span></span>
+<span id="cb5-105"><a href="#cb5-105"></a><span class="in">  &lt;/tr&gt;</span></span>
+<span id="cb5-106"><a href="#cb5-106"></a><span class="in">  &lt;tr&gt;</span></span>
+<span id="cb5-107"><a href="#cb5-107"></a><span class="in">    &lt;td&gt;Format and Beautify&lt;/td&gt;</span></span>
+<span id="cb5-108"><a href="#cb5-108"></a><span class="in">    &lt;td&gt;in progress&lt;/td&gt;</span></span>
+<span id="cb5-109"><a href="#cb5-109"></a><span class="in">    &lt;td&gt;Cristina Lafuente&lt;/td&gt;</span></span>
+<span id="cb5-110"><a href="#cb5-110"></a><span class="in">    &lt;td&gt;Wednesday, May 29: 5pm&lt;/td&gt;</span></span>
+<span id="cb5-111"><a href="#cb5-111"></a><span class="in">    &lt;td&gt;Moderate&lt;/td&gt;</span></span>
+<span id="cb5-112"><a href="#cb5-112"></a><span class="in">    &lt;td&gt;Go through and make sure that all formatting is nice &lt;/td&gt;</span></span>
+<span id="cb5-113"><a href="#cb5-113"></a><span class="in">  &lt;/tr&gt;</span></span>
+<span id="cb5-114"><a href="#cb5-114"></a><span class="in">  &lt;tr&gt;</span></span>
+<span id="cb5-115"><a href="#cb5-115"></a><span class="in">    &lt;td&gt;Add req&#39;d info to proposal&lt;/td&gt;</span></span>
+<span id="cb5-116"><a href="#cb5-116"></a><span class="in">    &lt;td&gt;in progress&lt;/td&gt;</span></span>
+<span id="cb5-117"><a href="#cb5-117"></a><span class="in">    &lt;td&gt;Cristina Lafuente&lt;/td&gt;</span></span>
+<span id="cb5-118"><a href="#cb5-118"></a><span class="in">    &lt;td&gt;Wednesday, May 29: 5pm&lt;/td&gt;</span></span>
+<span id="cb5-119"><a href="#cb5-119"></a><span class="in">    &lt;td&gt;High&lt;/td&gt;</span></span>
+<span id="cb5-120"><a href="#cb5-120"></a><span class="in">    &lt;td&gt;Fill in all required information &lt;/td&gt;</span></span>
+<span id="cb5-121"><a href="#cb5-121"></a><span class="in">  &lt;/tr&gt;</span></span>
+<span id="cb5-122"><a href="#cb5-122"></a><span class="in">&lt;/table&gt;</span></span>
+<span id="cb5-123"><a href="#cb5-123"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
