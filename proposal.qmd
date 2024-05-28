@@ -28,9 +28,11 @@ if (!require("pacman"))
   install.packages("pacman")
 
 # use this line for installing/loading
-pacman::p_load(dplyr,
+pacman::p_load(cowplot,
+               dplyr,
                here,
                knitr,
+               magick,
                scales,
                tidyverse,
                viridis)
@@ -55,18 +57,33 @@ The Dimensions of the data are:
 dim(coffeeData)
 ```
 
-The reason I selected this data set is because I enjoy coffee very much! Too much? Probably not. I have 6 different coffee brewing apparatuses in my kitchen.
+The variables collected are:
 
 ```{r}
-mokaPot <-(here("images/mokaPot.png"))
+colnames(coffeeData)
+```
+
+The reason I selected this data set is because I enjoy coffee very much! Too much? Probably not. I have 6 different coffee brewing apparatuses in my kitchen.
+
+```{r fig.cap = "Images from amazon.com reproduced here without permission"}
+
+mokaPot <- (here("images/mokaPot.png"))
 espressoMaker <- (here("images/espressoMachine.png"))
 frenchPress <- (here("images/frenchPress.png"))
 pod <- (here("images/kCup.png"))
 percolator <- (here("images/percolator.png"))
 pourOver <- (here("images/pourOver.png"))
 
-include_graphics(c(mokaPot, espressoMaker, frenchPress, pod, percolator, pourOver))
+ggdraw() +
+  draw_image(mokaPot, width = 0.33, height = .5, y = 0, interpolate = TRUE) +
+  draw_image(espressoMaker, width = 0.33, height = 0.5, x = 0.33, y = 0, interpolate = TRUE) +
+  draw_image(frenchPress, width = 0.33, height = 0.5, x = 0.67, y = 0, interpolate = TRUE) + 
+  draw_image(pod, width = 0.33, height = 0.5, y = 0.5 , interpolate = TRUE) +
+  draw_image(percolator, width = 0.33, height = 0.5, x = 0.33, y = 0.5, interpolate = TRUE) + 
+  draw_image(pourOver, width = 0.33, height = 0.5, x = 0.67, y = 0.5, interpolate = TRUE )
 ```
+
+\
 
 Make sure to load the data and use inline code for some of this information.
 
@@ -74,7 +91,7 @@ Make sure to load the data and use inline code for some of this information.
 
 Question 1:
 
-Do people tend to quantify acidity and bitterness in coffee as acidity and bitterness distinctly and correctly?
+Do people tend to quantify acidity and bitterness in coffee correctly and is their ability to judge dependent on their preference in coffee beverage?
 
 Question 2:
 
