@@ -34,6 +34,7 @@ pacman::p_load(cowplot,
                knitr,
                magick,
                scales,
+               shiny,
                tidyverse,
                viridis)
 
@@ -83,9 +84,7 @@ ggdraw() +
   draw_image(pourOver, width = 0.33, height = 0.5, x = 0.67, y = 0.5, interpolate = TRUE )
 ```
 
-\
-
-Make sure to load the data and use inline code for some of this information.
+Looking at data on coffee for six weeks seemed like a natural choice.
 
 ## Questions
 
@@ -99,16 +98,82 @@ Does political affiliation play any part in coffee preference?
 
 ## Analysis plan
 
--   A plan for answering each of the questions including the variables involved, variables to be created (if any), external data to be merged in (if any).
+-   Additional data will come from: [Acids in coffee: A review of sensory measurements and meta-analysis of chemical composition, by Yeager et al](https://www.tandfonline.com/doi/figure/10.1080/10408398.2021.1957767?)\
+
+-   There are two relevant CSVs one contains data which will be used to describe contr
+
+    This data will be joined on the type of roast (variable in both).
+
+    This study provides definitive data on the levels of acidity in coffee by roast as well as a source for what causes both bitterness and acidity in taste
+
+    ```{r, error = FALSE, message = FALSE, echo = FALSE}
+    coffeeAcidityCGA <- readr::read_csv(here("data/Acids_in_Coffee_-CGAs.csv"))
+    coffeeAcidityOA <- readr::read_csv(here("data/Acids_in_Coffee_-OAs.csv"))
+    ```
+
+They have quite a few very nice plots of their own, I think the one that best summarizes the data I'll be using is:
+
+```{r fig.cap = "Image from Yeager et al, Acids in Coffee"}
+plotAcidByRoast <- here("images/acidLevelByRoast.png")
+
+ggdraw() +
+  draw_image(plotAcidByRoast)
+
+```
+
+Due to some type of formatting error, roughly 1500 and 250 NA columns were appended to each dataset. Trimming those off, allows a more realistic view of the actual data names and size.
+
+This new data for chlorogenic acids has the dimensions and columns:
+
+```{r}
+## Dimensions and columns in the chlorogenic acids dataset:
+dim(coffeeAcidityCGA[1:33])
+
+```
+
+The columns are called:
+
+```{r}
+## The columns are called:
+colnames(coffeeAcidityCGA[1:33])
+
+```
+
+The new data for organic acids has dimension:
+
+```{r}
+
+## The dimensions of the Organic Acids dataset is:
+dim(coffeeAcidityOA[1:33])
+```
+
+That data has column names:
+
+```{r}
+## Those columns are called:
+colnames(coffeeAcidityOA[1:33])
+```
+
+Working with this additional data will require that I combine these three datasets along the "roast" variable and compare the relevant variables.
+
+For Organic Acids, I will need to create a new variable which adds up the total relevant organic acids.
+
+In the CGAs Table, I will similarly need to create a new variable which sums the total relevant CGAs.
+
+Once this has been done, those two variables can be compared, by roast, against what the taste testers believed to be acidic and non acidic.
+
+After that, I would like to run an analysis on the likelihood of a person to be correct based on their favorite coffee beverage.
+
+Looking at the second question, will be much more straightforward examining the political affiliation selection made by the participants as well as which of the coffees they preferred.
 
 ```{=html}
-<table>
+<table border ="1">
   <caption>
     <span data-qmd="Weekly Plan of Attack Table: Last updated: 5/28/2024">
     </span>
   </caption>
   
-  <thead>
+  <thead style =" background-color: #BF93EE">
     <tr>
       <th>Task Name</th>
       <th>Status</th>
@@ -119,28 +184,28 @@ Does political affiliation play any part in coffee preference?
     </tr>
   </thead>
   <tr>
-    <td>Add any extras</td>
-    <td>in progress</td>
+    <td>Add any extras or polish up wording</td>
+    <td>not yet started</td>
     <td>Cristina Lafuente</td>
-    <td>Wednesday, May 29: 5pm</td>
+    <td>June 10, 2024</td>
     <td>Low</td>
-    <td>Put in pictures, charts or plots to help viewers make sense of proposal</td>
+    <td>As possible additions *nice to haves* pop up, add them to this list</td>
   </tr>
   <tr>
-    <td>Format and Beautify</td>
-    <td>in progress</td>
+    <td>Begin working on presentation and write up</td>
+    <td>not yet started</td>
     <td>Cristina Lafuente</td>
-    <td>Wednesday, May 29: 5pm</td>
+    <td>June 3, 2024</td>
     <td>Moderate</td>
-    <td>Go through and make sure that all formatting is nice </td>
+    <td>Once feedback is in, begin wrangling data and working on presentation</td>
   </tr>
   <tr>
-    <td>Add req'd info to proposal</td>
-    <td>in progress</td>
+    <td>Finish proposal and give feedback</td>
+    <td>nearly complete</td>
     <td>Cristina Lafuente</td>
     <td>Wednesday, May 29: 5pm</td>
     <td>High</td>
-    <td>Fill in all required information </td>
+    <td>Push completed proposal and complete peer review </td>
   </tr>
 </table>
 ```
