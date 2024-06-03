@@ -4756,7 +4756,10 @@ vertical-align: -.125em;
   <ul>
   <li><a href="#dataset" id="toc-dataset" class="nav-link active" data-scroll-target="#dataset">Dataset</a></li>
   <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a></li>
-  <li><a href="#analysis-plan" id="toc-analysis-plan" class="nav-link" data-scroll-target="#analysis-plan">Analysis plan</a></li>
+  <li><a href="#analysis-plan" id="toc-analysis-plan" class="nav-link" data-scroll-target="#analysis-plan">Analysis plan</a>
+  <ul class="collapse">
+  <li><a href="#reformatting-data" id="toc-reformatting-data" class="nav-link" data-scroll-target="#reformatting-data">Reformatting Data</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -4896,7 +4899,7 @@ vertical-align: -.125em;
 <section id="questions" class="level2">
 <h2 class="anchored" data-anchor-id="questions">Questions</h2>
 <p>Question 1:</p>
-<p>Do people tend to quantify acidity and bitterness in coffee correctly and is their ability to judge dependent on their preference in coffee beverage?</p>
+<p>Do people tend to quantify acidity and bitterness in coffee correctly and is their ability to judge dependent on their preference in coffee?</p>
 <p>Question 2:</p>
 <p>Does political affiliation play any part in coffee preference?</p>
 </section>
@@ -4905,9 +4908,10 @@ vertical-align: -.125em;
 <ul>
 <li><p>Additional data will come from: <a href="https://www.tandfonline.com/doi/figure/10.1080/10408398.2021.1957767?">Acids in coffee: A review of sensory measurements and meta-analysis of chemical composition, by Yeager et al</a><br>
 </p></li>
-<li><p>There are two relevant CSVs one contains data which will be used to describe contr</p>
-<p>This data will be joined on the type of roast (variable in both).</p>
-<p>This study provides definitive data on the levels of acidity in coffee by roast as well as a source for what causes both bitterness and acidity in taste</p></li>
+<li><p>When it comes to what specific plotting method will best represent this data, it is difficult to know with certainty at this time. Anytime a correlation is made, scatterplots are an obvious choice with the possibility of facet wrapping by type.</p></li>
+<li><p>There are two relevant CSVs one contains data on total levels of organic acids, known to produce the acidic qualities of coffee and another contains data on total levels of chlorogenic acids in coffee - the total amount of which is dependent on roast level and correlated (inversely) with the “bitterness” flavor profiles.</p>
+<p>This data will be joined on the type of roast ( a variable in both).</p>
+<p>This study provides definitive data on the levels of acidity in coffee by roast as well as a source for what causes both bitterness and acidity in taste and will be helpful in determining subjects taste accuracy.</p></li>
 </ul>
 <p>They have quite a few very nice plots of their own, I think the one that best summarizes the data I’ll be using is:</p>
 <div class="cell">
@@ -4924,6 +4928,10 @@ vertical-align: -.125em;
 </div>
 </div>
 </div>
+<p>These tables will not be used in my report but are included here for informational purposes only. It shows the concentrations of total organic acids (on top) for Arabica (left) and Robusta (right) at different roast levels as well as different concentrations of CGAs for the same (bottom).</p>
+<p>As discussed in their paper, CGAs form chlorogenic acid lactones during roasting which impart the bitterness into the coffee. After roasting, the CGAs are no longer present and the lactones are, giving the bitter profile. Similar bitterness occurs through breakdown resulting from other organic acid compounds.</p>
+<section id="reformatting-data" class="level3">
+<h3 class="anchored" data-anchor-id="reformatting-data">Reformatting Data</h3>
 <p>Due to some type of formatting error, roughly 1500 and 250 NA columns were appended to each dataset. Trimming those off, allows a more realistic view of the actual data names and size.</p>
 <p>This new data for chlorogenic acids has the dimensions and columns:</p>
 <div class="cell">
@@ -5019,7 +5027,7 @@ vertical-align: -.125em;
 </tr>
 <tr class="odd">
 <td>Finish proposal and give feedback</td>
-<td>nearly complete</td>
+<td>complete</td>
 <td>Cristina Lafuente</td>
 <td>Wednesday, May 29: 5pm</td>
 <td>High</td>
@@ -5032,6 +5040,7 @@ vertical-align: -.125em;
 
 <!-- -->
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -5770,7 +5779,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb17-98"><a href="#cb17-98"></a></span>
 <span id="cb17-99"><a href="#cb17-99"></a>Question 1:</span>
 <span id="cb17-100"><a href="#cb17-100"></a></span>
-<span id="cb17-101"><a href="#cb17-101"></a>Do people tend to quantify acidity and bitterness in coffee correctly and is their ability to judge dependent on their preference in coffee beverage?</span>
+<span id="cb17-101"><a href="#cb17-101"></a>Do people tend to quantify acidity and bitterness in coffee correctly and is their ability to judge dependent on their preference in coffee?</span>
 <span id="cb17-102"><a href="#cb17-102"></a></span>
 <span id="cb17-103"><a href="#cb17-103"></a>Question 2:</span>
 <span id="cb17-104"><a href="#cb17-104"></a></span>
@@ -5780,114 +5789,122 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb17-108"><a href="#cb17-108"></a></span>
 <span id="cb17-109"><a href="#cb17-109"></a><span class="ss">-   </span>Additional data will come from: <span class="co">[</span><span class="ot">Acids in coffee: A review of sensory measurements and meta-analysis of chemical composition, by Yeager et al</span><span class="co">](https://www.tandfonline.com/doi/figure/10.1080/10408398.2021.1957767?)</span>\</span>
 <span id="cb17-110"><a href="#cb17-110"></a></span>
-<span id="cb17-111"><a href="#cb17-111"></a><span class="ss">-   </span>There are two relevant CSVs one contains data which will be used to describe contr</span>
+<span id="cb17-111"><a href="#cb17-111"></a><span class="ss">-   </span>When it comes to what specific plotting method will best represent this data, it is difficult to know with certainty at this time. Anytime a correlation is made, scatterplots are an obvious choice with the possibility of facet wrapping by type.</span>
 <span id="cb17-112"><a href="#cb17-112"></a></span>
-<span id="cb17-113"><a href="#cb17-113"></a>    This data will be joined on the type of roast (variable in both).</span>
+<span id="cb17-113"><a href="#cb17-113"></a><span class="ss">-   </span>There are two relevant CSVs one contains data on total levels of organic acids, known to produce the acidic qualities of coffee and another contains data on total levels of chlorogenic acids in coffee - the total amount of which is dependent on roast level and correlated (inversely) with the &quot;bitterness&quot; flavor profiles.</span>
 <span id="cb17-114"><a href="#cb17-114"></a></span>
-<span id="cb17-115"><a href="#cb17-115"></a>    This study provides definitive data on the levels of acidity in coffee by roast as well as a source for what causes both bitterness and acidity in taste</span>
+<span id="cb17-115"><a href="#cb17-115"></a>    This data will be joined on the type of roast ( a variable in both).</span>
 <span id="cb17-116"><a href="#cb17-116"></a></span>
-<span id="cb17-117"><a href="#cb17-117"></a>    <span class="in">```{r, error = FALSE, message = FALSE, echo = FALSE}</span></span>
-<span id="cb17-118"><a href="#cb17-118"></a><span class="in">    coffeeAcidityCGA &lt;- readr::read_csv(here(&quot;data/Acids_in_Coffee_-CGAs.csv&quot;))</span></span>
-<span id="cb17-119"><a href="#cb17-119"></a><span class="in">    coffeeAcidityOA &lt;- readr::read_csv(here(&quot;data/Acids_in_Coffee_-OAs.csv&quot;))</span></span>
-<span id="cb17-120"><a href="#cb17-120"></a><span class="in">    ```</span></span>
-<span id="cb17-121"><a href="#cb17-121"></a></span>
-<span id="cb17-122"><a href="#cb17-122"></a>They have quite a few very nice plots of their own, I think the one that best summarizes the data I&#39;ll be using is:</span>
+<span id="cb17-117"><a href="#cb17-117"></a>    This study provides definitive data on the levels of acidity in coffee by roast as well as a source for what causes both bitterness and acidity in taste and will be helpful in determining subjects taste accuracy.</span>
+<span id="cb17-118"><a href="#cb17-118"></a></span>
+<span id="cb17-119"><a href="#cb17-119"></a>    <span class="in">```{r, error = FALSE, message = FALSE, echo = FALSE}</span></span>
+<span id="cb17-120"><a href="#cb17-120"></a><span class="in">    coffeeAcidityCGA &lt;- readr::read_csv(here(&quot;data/Acids_in_Coffee_-CGAs.csv&quot;))</span></span>
+<span id="cb17-121"><a href="#cb17-121"></a><span class="in">    coffeeAcidityOA &lt;- readr::read_csv(here(&quot;data/Acids_in_Coffee_-OAs.csv&quot;))</span></span>
+<span id="cb17-122"><a href="#cb17-122"></a><span class="in">    ```</span></span>
 <span id="cb17-123"><a href="#cb17-123"></a></span>
-<span id="cb17-124"><a href="#cb17-124"></a><span class="in">```{r fig.cap = &quot;Image from Yeager et al, Acids in Coffee&quot;}</span></span>
-<span id="cb17-125"><a href="#cb17-125"></a><span class="in">plotAcidByRoast &lt;- here(&quot;images/acidLevelByRoast.png&quot;)</span></span>
-<span id="cb17-126"><a href="#cb17-126"></a></span>
-<span id="cb17-127"><a href="#cb17-127"></a><span class="in">ggdraw() +</span></span>
-<span id="cb17-128"><a href="#cb17-128"></a><span class="in">  draw_image(plotAcidByRoast)</span></span>
-<span id="cb17-129"><a href="#cb17-129"></a></span>
-<span id="cb17-130"><a href="#cb17-130"></a><span class="in">```</span></span>
+<span id="cb17-124"><a href="#cb17-124"></a>They have quite a few very nice plots of their own, I think the one that best summarizes the data I&#39;ll be using is:</span>
+<span id="cb17-125"><a href="#cb17-125"></a></span>
+<span id="cb17-126"><a href="#cb17-126"></a><span class="in">```{r fig.cap = &quot;Image from Yeager et al, Acids in Coffee&quot;}</span></span>
+<span id="cb17-127"><a href="#cb17-127"></a><span class="in">plotAcidByRoast &lt;- here(&quot;images/acidLevelByRoast.png&quot;)</span></span>
+<span id="cb17-128"><a href="#cb17-128"></a></span>
+<span id="cb17-129"><a href="#cb17-129"></a><span class="in">ggdraw() +</span></span>
+<span id="cb17-130"><a href="#cb17-130"></a><span class="in">  draw_image(plotAcidByRoast)</span></span>
 <span id="cb17-131"><a href="#cb17-131"></a></span>
-<span id="cb17-132"><a href="#cb17-132"></a>Due to some type of formatting error, roughly 1500 and 250 NA columns were appended to each dataset. Trimming those off, allows a more realistic view of the actual data names and size.</span>
+<span id="cb17-132"><a href="#cb17-132"></a><span class="in">```</span></span>
 <span id="cb17-133"><a href="#cb17-133"></a></span>
-<span id="cb17-134"><a href="#cb17-134"></a>This new data for chlorogenic acids has the dimensions and columns:</span>
+<span id="cb17-134"><a href="#cb17-134"></a>These tables will not be used in my report but are included here for informational purposes only. It shows the concentrations of total organic acids (on top) for Arabica (left) and Robusta (right) at different roast levels as well as different concentrations of CGAs for the same (bottom).</span>
 <span id="cb17-135"><a href="#cb17-135"></a></span>
-<span id="cb17-138"><a href="#cb17-138"></a><span class="in">```{r}</span></span>
-<span id="cb17-139"><a href="#cb17-139"></a><span class="do">## Dimensions and columns in the chlorogenic acids dataset:</span></span>
-<span id="cb17-140"><a href="#cb17-140"></a><span class="fu">dim</span>(coffeeAcidityCGA[<span class="dv">1</span><span class="sc">:</span><span class="dv">33</span>])</span>
+<span id="cb17-136"><a href="#cb17-136"></a>As discussed in their paper, CGAs form chlorogenic acid lactones during roasting which impart the bitterness into the coffee. After roasting, the CGAs are no longer present and the lactones are, giving the bitter profile. Similar bitterness occurs through breakdown resulting from other organic acid compounds.</span>
+<span id="cb17-137"><a href="#cb17-137"></a></span>
+<span id="cb17-138"><a href="#cb17-138"></a><span class="fu">### Reformatting Data </span></span>
+<span id="cb17-139"><a href="#cb17-139"></a></span>
+<span id="cb17-140"><a href="#cb17-140"></a>Due to some type of formatting error, roughly 1500 and 250 NA columns were appended to each dataset. Trimming those off, allows a more realistic view of the actual data names and size.</span>
 <span id="cb17-141"><a href="#cb17-141"></a></span>
-<span id="cb17-142"><a href="#cb17-142"></a><span class="in">```</span></span>
+<span id="cb17-142"><a href="#cb17-142"></a>This new data for chlorogenic acids has the dimensions and columns:</span>
 <span id="cb17-143"><a href="#cb17-143"></a></span>
-<span id="cb17-144"><a href="#cb17-144"></a>The columns are called:</span>
-<span id="cb17-145"><a href="#cb17-145"></a></span>
-<span id="cb17-148"><a href="#cb17-148"></a><span class="in">```{r}</span></span>
-<span id="cb17-149"><a href="#cb17-149"></a><span class="do">## The columns are called:</span></span>
-<span id="cb17-150"><a href="#cb17-150"></a><span class="fu">colnames</span>(coffeeAcidityCGA[<span class="dv">1</span><span class="sc">:</span><span class="dv">33</span>])</span>
+<span id="cb17-146"><a href="#cb17-146"></a><span class="in">```{r}</span></span>
+<span id="cb17-147"><a href="#cb17-147"></a><span class="do">## Dimensions and columns in the chlorogenic acids dataset:</span></span>
+<span id="cb17-148"><a href="#cb17-148"></a><span class="fu">dim</span>(coffeeAcidityCGA[<span class="dv">1</span><span class="sc">:</span><span class="dv">33</span>])</span>
+<span id="cb17-149"><a href="#cb17-149"></a></span>
+<span id="cb17-150"><a href="#cb17-150"></a><span class="in">```</span></span>
 <span id="cb17-151"><a href="#cb17-151"></a></span>
-<span id="cb17-152"><a href="#cb17-152"></a><span class="in">```</span></span>
+<span id="cb17-152"><a href="#cb17-152"></a>The columns are called:</span>
 <span id="cb17-153"><a href="#cb17-153"></a></span>
-<span id="cb17-154"><a href="#cb17-154"></a>The new data for organic acids has dimension:</span>
-<span id="cb17-155"><a href="#cb17-155"></a></span>
-<span id="cb17-158"><a href="#cb17-158"></a><span class="in">```{r}</span></span>
-<span id="cb17-159"><a href="#cb17-159"></a><span class="do">## The dimensions of the Organic Acids dataset is:</span></span>
-<span id="cb17-160"><a href="#cb17-160"></a><span class="fu">dim</span>(coffeeAcidityOA[<span class="dv">1</span><span class="sc">:</span><span class="dv">33</span>])</span>
-<span id="cb17-161"><a href="#cb17-161"></a><span class="in">```</span></span>
-<span id="cb17-162"><a href="#cb17-162"></a></span>
-<span id="cb17-163"><a href="#cb17-163"></a>That data has column names:</span>
-<span id="cb17-164"><a href="#cb17-164"></a></span>
-<span id="cb17-167"><a href="#cb17-167"></a><span class="in">```{r}</span></span>
-<span id="cb17-168"><a href="#cb17-168"></a><span class="do">## Those columns are called:</span></span>
-<span id="cb17-169"><a href="#cb17-169"></a><span class="fu">colnames</span>(coffeeAcidityOA[<span class="dv">1</span><span class="sc">:</span><span class="dv">33</span>])</span>
-<span id="cb17-170"><a href="#cb17-170"></a><span class="in">```</span></span>
-<span id="cb17-171"><a href="#cb17-171"></a></span>
-<span id="cb17-172"><a href="#cb17-172"></a>Working with this additional data will require that I combine these three datasets along the &quot;roast&quot; variable and compare the relevant variables.</span>
-<span id="cb17-173"><a href="#cb17-173"></a></span>
-<span id="cb17-174"><a href="#cb17-174"></a>For Organic Acids, I will need to create a new variable which adds up the total relevant organic acids.</span>
-<span id="cb17-175"><a href="#cb17-175"></a></span>
-<span id="cb17-176"><a href="#cb17-176"></a>In the CGAs Table, I will similarly need to create a new variable which sums the total relevant CGAs.</span>
-<span id="cb17-177"><a href="#cb17-177"></a></span>
-<span id="cb17-178"><a href="#cb17-178"></a>Once this has been done, those two variables can be compared, by roast, against what the taste testers believed to be acidic and non acidic.</span>
+<span id="cb17-156"><a href="#cb17-156"></a><span class="in">```{r}</span></span>
+<span id="cb17-157"><a href="#cb17-157"></a><span class="do">## The columns are called:</span></span>
+<span id="cb17-158"><a href="#cb17-158"></a><span class="fu">colnames</span>(coffeeAcidityCGA[<span class="dv">1</span><span class="sc">:</span><span class="dv">33</span>])</span>
+<span id="cb17-159"><a href="#cb17-159"></a></span>
+<span id="cb17-160"><a href="#cb17-160"></a><span class="in">```</span></span>
+<span id="cb17-161"><a href="#cb17-161"></a></span>
+<span id="cb17-162"><a href="#cb17-162"></a>The new data for organic acids has dimension:</span>
+<span id="cb17-163"><a href="#cb17-163"></a></span>
+<span id="cb17-166"><a href="#cb17-166"></a><span class="in">```{r}</span></span>
+<span id="cb17-167"><a href="#cb17-167"></a><span class="do">## The dimensions of the Organic Acids dataset is:</span></span>
+<span id="cb17-168"><a href="#cb17-168"></a><span class="fu">dim</span>(coffeeAcidityOA[<span class="dv">1</span><span class="sc">:</span><span class="dv">33</span>])</span>
+<span id="cb17-169"><a href="#cb17-169"></a><span class="in">```</span></span>
+<span id="cb17-170"><a href="#cb17-170"></a></span>
+<span id="cb17-171"><a href="#cb17-171"></a>That data has column names:</span>
+<span id="cb17-172"><a href="#cb17-172"></a></span>
+<span id="cb17-175"><a href="#cb17-175"></a><span class="in">```{r}</span></span>
+<span id="cb17-176"><a href="#cb17-176"></a><span class="do">## Those columns are called:</span></span>
+<span id="cb17-177"><a href="#cb17-177"></a><span class="fu">colnames</span>(coffeeAcidityOA[<span class="dv">1</span><span class="sc">:</span><span class="dv">33</span>])</span>
+<span id="cb17-178"><a href="#cb17-178"></a><span class="in">```</span></span>
 <span id="cb17-179"><a href="#cb17-179"></a></span>
-<span id="cb17-180"><a href="#cb17-180"></a>After that, I would like to run an analysis on the likelihood of a person to be correct based on their favorite coffee beverage.</span>
+<span id="cb17-180"><a href="#cb17-180"></a>Working with this additional data will require that I combine these three datasets along the &quot;roast&quot; variable and compare the relevant variables.</span>
 <span id="cb17-181"><a href="#cb17-181"></a></span>
-<span id="cb17-182"><a href="#cb17-182"></a>Looking at the second question, will be much more straightforward examining the political affiliation selection made by the participants as well as which of the coffees they preferred.</span>
+<span id="cb17-182"><a href="#cb17-182"></a>For Organic Acids, I will need to create a new variable which adds up the total relevant organic acids.</span>
 <span id="cb17-183"><a href="#cb17-183"></a></span>
-<span id="cb17-184"><a href="#cb17-184"></a><span class="in">```{=html}</span></span>
-<span id="cb17-185"><a href="#cb17-185"></a><span class="in">&lt;table border =&quot;1&quot;&gt;</span></span>
-<span id="cb17-186"><a href="#cb17-186"></a><span class="in">  &lt;caption&gt;</span></span>
-<span id="cb17-187"><a href="#cb17-187"></a><span class="in">    &lt;span data-qmd=&quot;Weekly Plan of Attack Table: Last updated: 5/28/2024&quot;&gt;</span></span>
-<span id="cb17-188"><a href="#cb17-188"></a><span class="in">    &lt;/span&gt;</span></span>
-<span id="cb17-189"><a href="#cb17-189"></a><span class="in">  &lt;/caption&gt;</span></span>
-<span id="cb17-190"><a href="#cb17-190"></a><span class="in">  </span></span>
-<span id="cb17-191"><a href="#cb17-191"></a><span class="in">  &lt;thead style =&quot; background-color: #BF93EE&quot;&gt;</span></span>
-<span id="cb17-192"><a href="#cb17-192"></a><span class="in">    &lt;tr&gt;</span></span>
-<span id="cb17-193"><a href="#cb17-193"></a><span class="in">      &lt;th&gt;Task Name&lt;/th&gt;</span></span>
-<span id="cb17-194"><a href="#cb17-194"></a><span class="in">      &lt;th&gt;Status&lt;/th&gt;</span></span>
-<span id="cb17-195"><a href="#cb17-195"></a><span class="in">      &lt;th&gt;Assignee&lt;/th&gt;</span></span>
-<span id="cb17-196"><a href="#cb17-196"></a><span class="in">      &lt;th&gt;Due&lt;/th&gt;</span></span>
-<span id="cb17-197"><a href="#cb17-197"></a><span class="in">      &lt;th&gt;Priority&lt;/th&gt;</span></span>
-<span id="cb17-198"><a href="#cb17-198"></a><span class="in">      &lt;th&gt;Summary&lt;/th&gt;</span></span>
-<span id="cb17-199"><a href="#cb17-199"></a><span class="in">    &lt;/tr&gt;</span></span>
-<span id="cb17-200"><a href="#cb17-200"></a><span class="in">  &lt;/thead&gt;</span></span>
-<span id="cb17-201"><a href="#cb17-201"></a><span class="in">  &lt;tr&gt;</span></span>
-<span id="cb17-202"><a href="#cb17-202"></a><span class="in">    &lt;td&gt;Add any extras or polish up wording&lt;/td&gt;</span></span>
-<span id="cb17-203"><a href="#cb17-203"></a><span class="in">    &lt;td&gt;not yet started&lt;/td&gt;</span></span>
-<span id="cb17-204"><a href="#cb17-204"></a><span class="in">    &lt;td&gt;Cristina Lafuente&lt;/td&gt;</span></span>
-<span id="cb17-205"><a href="#cb17-205"></a><span class="in">    &lt;td&gt;June 10, 2024&lt;/td&gt;</span></span>
-<span id="cb17-206"><a href="#cb17-206"></a><span class="in">    &lt;td&gt;Low&lt;/td&gt;</span></span>
-<span id="cb17-207"><a href="#cb17-207"></a><span class="in">    &lt;td&gt;As possible additions *nice to haves* pop up, add them to this list&lt;/td&gt;</span></span>
-<span id="cb17-208"><a href="#cb17-208"></a><span class="in">  &lt;/tr&gt;</span></span>
+<span id="cb17-184"><a href="#cb17-184"></a>In the CGAs Table, I will similarly need to create a new variable which sums the total relevant CGAs.</span>
+<span id="cb17-185"><a href="#cb17-185"></a></span>
+<span id="cb17-186"><a href="#cb17-186"></a>Once this has been done, those two variables can be compared, by roast, against what the taste testers believed to be acidic and non acidic.</span>
+<span id="cb17-187"><a href="#cb17-187"></a></span>
+<span id="cb17-188"><a href="#cb17-188"></a>After that, I would like to run an analysis on the likelihood of a person to be correct based on their favorite coffee beverage.</span>
+<span id="cb17-189"><a href="#cb17-189"></a></span>
+<span id="cb17-190"><a href="#cb17-190"></a>Looking at the second question, will be much more straightforward examining the political affiliation selection made by the participants as well as which of the coffees they preferred.</span>
+<span id="cb17-191"><a href="#cb17-191"></a></span>
+<span id="cb17-192"><a href="#cb17-192"></a><span class="in">```{=html}</span></span>
+<span id="cb17-193"><a href="#cb17-193"></a><span class="in">&lt;table border =&quot;1&quot;&gt;</span></span>
+<span id="cb17-194"><a href="#cb17-194"></a><span class="in">  &lt;caption&gt;</span></span>
+<span id="cb17-195"><a href="#cb17-195"></a><span class="in">    &lt;span data-qmd=&quot;Weekly Plan of Attack Table: Last updated: 5/28/2024&quot;&gt;</span></span>
+<span id="cb17-196"><a href="#cb17-196"></a><span class="in">    &lt;/span&gt;</span></span>
+<span id="cb17-197"><a href="#cb17-197"></a><span class="in">  &lt;/caption&gt;</span></span>
+<span id="cb17-198"><a href="#cb17-198"></a><span class="in">  </span></span>
+<span id="cb17-199"><a href="#cb17-199"></a><span class="in">  &lt;thead style =&quot; background-color: #BF93EE&quot;&gt;</span></span>
+<span id="cb17-200"><a href="#cb17-200"></a><span class="in">    &lt;tr&gt;</span></span>
+<span id="cb17-201"><a href="#cb17-201"></a><span class="in">      &lt;th&gt;Task Name&lt;/th&gt;</span></span>
+<span id="cb17-202"><a href="#cb17-202"></a><span class="in">      &lt;th&gt;Status&lt;/th&gt;</span></span>
+<span id="cb17-203"><a href="#cb17-203"></a><span class="in">      &lt;th&gt;Assignee&lt;/th&gt;</span></span>
+<span id="cb17-204"><a href="#cb17-204"></a><span class="in">      &lt;th&gt;Due&lt;/th&gt;</span></span>
+<span id="cb17-205"><a href="#cb17-205"></a><span class="in">      &lt;th&gt;Priority&lt;/th&gt;</span></span>
+<span id="cb17-206"><a href="#cb17-206"></a><span class="in">      &lt;th&gt;Summary&lt;/th&gt;</span></span>
+<span id="cb17-207"><a href="#cb17-207"></a><span class="in">    &lt;/tr&gt;</span></span>
+<span id="cb17-208"><a href="#cb17-208"></a><span class="in">  &lt;/thead&gt;</span></span>
 <span id="cb17-209"><a href="#cb17-209"></a><span class="in">  &lt;tr&gt;</span></span>
-<span id="cb17-210"><a href="#cb17-210"></a><span class="in">    &lt;td&gt;Begin working on presentation and write up&lt;/td&gt;</span></span>
+<span id="cb17-210"><a href="#cb17-210"></a><span class="in">    &lt;td&gt;Add any extras or polish up wording&lt;/td&gt;</span></span>
 <span id="cb17-211"><a href="#cb17-211"></a><span class="in">    &lt;td&gt;not yet started&lt;/td&gt;</span></span>
 <span id="cb17-212"><a href="#cb17-212"></a><span class="in">    &lt;td&gt;Cristina Lafuente&lt;/td&gt;</span></span>
-<span id="cb17-213"><a href="#cb17-213"></a><span class="in">    &lt;td&gt;June 3, 2024&lt;/td&gt;</span></span>
-<span id="cb17-214"><a href="#cb17-214"></a><span class="in">    &lt;td&gt;Moderate&lt;/td&gt;</span></span>
-<span id="cb17-215"><a href="#cb17-215"></a><span class="in">    &lt;td&gt;Once feedback is in, begin wrangling data and working on presentation&lt;/td&gt;</span></span>
+<span id="cb17-213"><a href="#cb17-213"></a><span class="in">    &lt;td&gt;June 10, 2024&lt;/td&gt;</span></span>
+<span id="cb17-214"><a href="#cb17-214"></a><span class="in">    &lt;td&gt;Low&lt;/td&gt;</span></span>
+<span id="cb17-215"><a href="#cb17-215"></a><span class="in">    &lt;td&gt;As possible additions *nice to haves* pop up, add them to this list&lt;/td&gt;</span></span>
 <span id="cb17-216"><a href="#cb17-216"></a><span class="in">  &lt;/tr&gt;</span></span>
 <span id="cb17-217"><a href="#cb17-217"></a><span class="in">  &lt;tr&gt;</span></span>
-<span id="cb17-218"><a href="#cb17-218"></a><span class="in">    &lt;td&gt;Finish proposal and give feedback&lt;/td&gt;</span></span>
-<span id="cb17-219"><a href="#cb17-219"></a><span class="in">    &lt;td&gt;nearly complete&lt;/td&gt;</span></span>
+<span id="cb17-218"><a href="#cb17-218"></a><span class="in">    &lt;td&gt;Begin working on presentation and write up&lt;/td&gt;</span></span>
+<span id="cb17-219"><a href="#cb17-219"></a><span class="in">    &lt;td&gt;not yet started&lt;/td&gt;</span></span>
 <span id="cb17-220"><a href="#cb17-220"></a><span class="in">    &lt;td&gt;Cristina Lafuente&lt;/td&gt;</span></span>
-<span id="cb17-221"><a href="#cb17-221"></a><span class="in">    &lt;td&gt;Wednesday, May 29: 5pm&lt;/td&gt;</span></span>
-<span id="cb17-222"><a href="#cb17-222"></a><span class="in">    &lt;td&gt;High&lt;/td&gt;</span></span>
-<span id="cb17-223"><a href="#cb17-223"></a><span class="in">    &lt;td&gt;Push completed proposal and complete peer review &lt;/td&gt;</span></span>
+<span id="cb17-221"><a href="#cb17-221"></a><span class="in">    &lt;td&gt;June 3, 2024&lt;/td&gt;</span></span>
+<span id="cb17-222"><a href="#cb17-222"></a><span class="in">    &lt;td&gt;Moderate&lt;/td&gt;</span></span>
+<span id="cb17-223"><a href="#cb17-223"></a><span class="in">    &lt;td&gt;Once feedback is in, begin wrangling data and working on presentation&lt;/td&gt;</span></span>
 <span id="cb17-224"><a href="#cb17-224"></a><span class="in">  &lt;/tr&gt;</span></span>
-<span id="cb17-225"><a href="#cb17-225"></a><span class="in">&lt;/table&gt;</span></span>
-<span id="cb17-226"><a href="#cb17-226"></a><span class="in">```</span></span>
+<span id="cb17-225"><a href="#cb17-225"></a><span class="in">  &lt;tr&gt;</span></span>
+<span id="cb17-226"><a href="#cb17-226"></a><span class="in">    &lt;td&gt;Finish proposal and give feedback&lt;/td&gt;</span></span>
+<span id="cb17-227"><a href="#cb17-227"></a><span class="in">    &lt;td&gt;complete&lt;/td&gt;</span></span>
+<span id="cb17-228"><a href="#cb17-228"></a><span class="in">    &lt;td&gt;Cristina Lafuente&lt;/td&gt;</span></span>
+<span id="cb17-229"><a href="#cb17-229"></a><span class="in">    &lt;td&gt;Wednesday, May 29: 5pm&lt;/td&gt;</span></span>
+<span id="cb17-230"><a href="#cb17-230"></a><span class="in">    &lt;td&gt;High&lt;/td&gt;</span></span>
+<span id="cb17-231"><a href="#cb17-231"></a><span class="in">    &lt;td&gt;Push completed proposal and complete peer review &lt;/td&gt;</span></span>
+<span id="cb17-232"><a href="#cb17-232"></a><span class="in">  &lt;/tr&gt;</span></span>
+<span id="cb17-233"><a href="#cb17-233"></a><span class="in">&lt;/table&gt;</span></span>
+<span id="cb17-234"><a href="#cb17-234"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
