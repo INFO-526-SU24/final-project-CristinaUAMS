@@ -1,11 +1,12 @@
 ---
-title: "Project title"
+title: "Coffee Curiosity"
 subtitle: "INFO 526 - Summer 2024 - Final Project"
-author: "Author names"
+description: "Evaluation of data recovered from coffee taste test"
+author: "Cristina Lafuente"
 title-slide-attributes:
-  data-background-image: images/watercolour_sys02_img34_teacup-ocean.jpg
+  data-background-image: images/beansHD.jpg
   data-background-size: stretch
-  data-background-opacity: "0.7"
+  data-background-opacity: "0.5"
   data-slide-number: none
 format:
   revealjs:
@@ -20,8 +21,23 @@ execute:
 #| label: load-packages
 #| include: false
 
+
+
+if (!require("pacman")) 
+  install.packages("pacman")
 # Load packages here
-pacman::p_load(tidymodels,
+pacman::p_load(dplyr,
+               ggpmisc,
+               ggthemes,
+               grid,
+               gridExtra,
+               here,
+               palettetown,
+               paletteer,
+                patchwork,
+                showtext,
+                sysfonts,
+               tidymodels,
                tidyverse)
 
 ```
@@ -30,8 +46,11 @@ pacman::p_load(tidymodels,
 #| label: setup
 #| include: false
 
+
+sysfonts::font_add_google(name = "Playfair Display", family = "Playfair Display")
+showtext::showtext_auto()
 # Plot theme
-ggplot2::theme_set(ggplot2::theme_minimal(base_size = 11))
+ggplot2::theme_set(ggplot2::theme_minimal(base_size = 16, base_family = "Playfair Display"))
 
 # For better figure resolution
 knitr::opts_chunk$set(
@@ -46,10 +65,10 @@ knitr::opts_chunk$set(
 #| label: load-data
 #| include: false
 # Load data here
-data(mtcars)
-mtcars$speed <- mtcars$hp / mtcars$wt
+coffeeData <- readr::read_csv(('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-05-14/coffee_survey.csv'))
 
-data("penguins")
+coffeeAcidityCGA <- readr::read_csv(here("data/Acids_in_Coffee_-CGAs.csv"))
+coffeeAcidityOA <- readr::read_csv(here("data/Acids_in_Coffee_-OAs.csv"))
 ```
 
 # Using Quarto for presentations
@@ -83,21 +102,65 @@ or in two columns
 ## Code
 
 ```{r, echo=FALSE}
-model <- lm(mpg ~ speed, data = mtcars) 
+CGA <- coffeeAcidityCGA[1:33] |> glimpse()
 
-model |> tidy()
+OA <- coffeeAcidityOA[1:35] |> glimpse()
 
-model |> glance()
+cga_by_roast <- CGA |>
+  group_by(Roast) |> 
+  mutate(roast_average_cga = mean(`Total CGA`, na.rm = TRUE) ) |>
+  select(Type, Roast, Extraction, `Total CGA`, roast_average_cga)
 
+cga_by_roast |> glimpse()
+
+oa_by_roast <- OA |>
+  group_by(Roast) |>
+  mutate(roast_average_oa = mean(Total, na.rm = TRUE)) |>
+  select(Type, Roast, Extraction, Total, roast_average_oa)
+
+oa_by_roast |> glimpse()
+
+roast_table <- oa_by_roast |>
+  inner_join(cga_by_roast, 
+             by = "Roast", 
+             suffix = c("_oa", "_cga"), 
+             relationship = "many-to-many") 
+  
+
+select_coffee_data <- coffeeData |>
+  select(submission_id, coffee_a_bitterness, coffee_a_acidity, coffee_a_personal_preference,
+         coffee_b_bitterness, coffee_b_acidity, coffee_b_personal_preference, 
+         coffee_c_bitterness, coffee_c_acidity, coffee_c_personal_preference,
+         coffee_d_bitterness, coffee_d_acidity, coffee_d_personal_preference,
+         prefer_overall, political_affiliation) |> glimpse()
+
+light_table <- roast_table |> 
+  filter(Roast == "Light") |>
+  select(Roast, roast_average_oa, roast_average_cga) |>
+  rename(`Light OA` = roast_average_oa, `Light CGA` = roast_average_cga) |> 
+  distinct()
+  
+
+select_coffee_data |> 
+  select(coffee_a_acidity, coffee_a_bitterness, prefer_overall) |>
+  pivot_longer(!prefer_overall,  names_to = "flavor_profile", values_to = "rating") |>
+  ggplot(aes( prefer_overall,  fill = as.factor(rating))) +
+  geom_bar(aes(fill = as.factor(rating)), position = "dodge") +
+  annotate(geom = "table",
+           x =0.25, y = 800,
+           label = list(light_table),
+           hjust = 0.8, vjust = 0.3, ) +
+ 
+facet_wrap(~flavor_profile) +
+  coord_flip() +
+  scale_fill_paletteer_d("palettetown::zigzagoon") 
+  
 ```
 
 ## Plots
 
 ```{r}
-penguins |>
-  mutate(species = ifelse(species == "Adelie", "Adelie", "Other")) |>
-  ggplot(aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
-  geom_point()
+
 ```
 
 ## Plot and text
@@ -111,12 +174,7 @@ penguins |>
 
 ::: {.column width="50%"}
 ```{r, warning=FALSE, fig.width=5.5}
-penguins |>
-  ggplot(aes(x = bill_length_mm, y = species, color = species)) +
-  geom_boxplot(linewidth = 0.75,
-               outlier.size = 2.5) +
-  theme_minimal(base_size = 15) +
-  theme(legend.key.size = unit(0.8, "cm"))
+
 ```
 :::
 :::
@@ -128,10 +186,7 @@ penguins |>
 If you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,
 
 ```{r}
-penguins |> 
-  head() |>
-  kableExtra::kable() |>
-  kableExtra::kable_styling()
+
 ```
 
 ## Images

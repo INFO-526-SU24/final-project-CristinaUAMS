@@ -1,5 +1,5 @@
 ---
-title: "The Great Coffee Caper"
+title: "Coffee Curiosity"
 subtitle: "Exploring Discernment and Appreciation of Different Roasts"
 author: 
   - name: "Cristina Lafuente"
