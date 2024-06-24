@@ -127,7 +127,7 @@ These tables will not be used in my report but are included here for information
 
 As discussed in their paper, CGAs form chlorogenic acid lactones during roasting which impart the bitterness into the coffee. After roasting, the CGAs are no longer present and the lactones are, giving the bitter profile. Similar bitterness occurs through breakdown resulting from other organic acid compounds.
 
-### Reformatting Data 
+### Reformatting Data
 
 Due to some type of formatting error, roughly 1500 and 250 NA columns were appended to each dataset. Trimming those off, allows a more realistic view of the actual data names and size.
 
@@ -164,11 +164,11 @@ colnames(coffeeAcidityOA[1:33])
 
 Working with this additional data will require that I combine these three datasets along the "roast" variable and compare the relevant variables.
 
-For Organic Acids, I will need to create a new variable which adds up the total relevant organic acids.
+For Organic Acids, I will need to create a new variable which adds up the total relevant organic acids. This will be a double type as it is a measure of concentration.
 
-In the CGAs Table, I will similarly need to create a new variable which sums the total relevant CGAs.
+In the CGAs Table, I will similarly need to create a new variable which sums the total relevant CGAs. This will be a double type as it is a measure of concentration.
 
-Once this has been done, those two variables can be compared, by roast, against what the taste testers believed to be acidic and non acidic.
+Once this has been done, those two variables can be compared, by roast (chr type - qualitative), against what the taste testers believed to be acidic and non acidic (chr type -qualitative).
 
 After that, I would like to run an analysis on the likelihood of a person to be correct based on their favorite coffee beverage.
 

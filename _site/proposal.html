@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.4.555">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -4990,13 +4990,12 @@ vertical-align: -.125em;
 </div>
 </div>
 <p>Working with this additional data will require that I combine these three datasets along the “roast” variable and compare the relevant variables.</p>
-<p>For Organic Acids, I will need to create a new variable which adds up the total relevant organic acids.</p>
-<p>In the CGAs Table, I will similarly need to create a new variable which sums the total relevant CGAs.</p>
-<p>Once this has been done, those two variables can be compared, by roast, against what the taste testers believed to be acidic and non acidic.</p>
+<p>For Organic Acids, I will need to create a new variable which adds up the total relevant organic acids. This will be a double type as it is a measure of concentration.</p>
+<p>In the CGAs Table, I will similarly need to create a new variable which sums the total relevant CGAs. This will be a double type as it is a measure of concentration.</p>
+<p>Once this has been done, those two variables can be compared, by roast (chr type - qualitative), against what the taste testers believed to be acidic and non acidic (chr type -qualitative).</p>
 <p>After that, I would like to run an analysis on the likelihood of a person to be correct based on their favorite coffee beverage.</p>
 <p>Looking at the second question, will be much more straightforward examining the political affiliation selection made by the participants as well as which of the coffees they preferred.</p>
-<div>
-<table data-quarto-postprocess="true" data-border="1" class="table">
+<table class="caption-top table" data-quarto-postprocess="true" data-border="1">
 <caption>Weekly Plan of Attack Table: Last updated: 5/28/2024</caption>
 <thead style=" background-color: #BF93EE">
 <tr class="header">
@@ -5035,7 +5034,6 @@ vertical-align: -.125em;
 </tr>
 </tbody>
 </table>
-</div>
 
 
 <!-- -->
@@ -5816,7 +5814,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb17-135"><a href="#cb17-135"></a></span>
 <span id="cb17-136"><a href="#cb17-136"></a>As discussed in their paper, CGAs form chlorogenic acid lactones during roasting which impart the bitterness into the coffee. After roasting, the CGAs are no longer present and the lactones are, giving the bitter profile. Similar bitterness occurs through breakdown resulting from other organic acid compounds.</span>
 <span id="cb17-137"><a href="#cb17-137"></a></span>
-<span id="cb17-138"><a href="#cb17-138"></a><span class="fu">### Reformatting Data </span></span>
+<span id="cb17-138"><a href="#cb17-138"></a><span class="fu">### Reformatting Data</span></span>
 <span id="cb17-139"><a href="#cb17-139"></a></span>
 <span id="cb17-140"><a href="#cb17-140"></a>Due to some type of formatting error, roughly 1500 and 250 NA columns were appended to each dataset. Trimming those off, allows a more realistic view of the actual data names and size.</span>
 <span id="cb17-141"><a href="#cb17-141"></a></span>
@@ -5852,11 +5850,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb17-179"><a href="#cb17-179"></a></span>
 <span id="cb17-180"><a href="#cb17-180"></a>Working with this additional data will require that I combine these three datasets along the &quot;roast&quot; variable and compare the relevant variables.</span>
 <span id="cb17-181"><a href="#cb17-181"></a></span>
-<span id="cb17-182"><a href="#cb17-182"></a>For Organic Acids, I will need to create a new variable which adds up the total relevant organic acids.</span>
+<span id="cb17-182"><a href="#cb17-182"></a>For Organic Acids, I will need to create a new variable which adds up the total relevant organic acids. This will be a double type as it is a measure of concentration.</span>
 <span id="cb17-183"><a href="#cb17-183"></a></span>
-<span id="cb17-184"><a href="#cb17-184"></a>In the CGAs Table, I will similarly need to create a new variable which sums the total relevant CGAs.</span>
+<span id="cb17-184"><a href="#cb17-184"></a>In the CGAs Table, I will similarly need to create a new variable which sums the total relevant CGAs. This will be a double type as it is a measure of concentration.</span>
 <span id="cb17-185"><a href="#cb17-185"></a></span>
-<span id="cb17-186"><a href="#cb17-186"></a>Once this has been done, those two variables can be compared, by roast, against what the taste testers believed to be acidic and non acidic.</span>
+<span id="cb17-186"><a href="#cb17-186"></a>Once this has been done, those two variables can be compared, by roast (chr type - qualitative), against what the taste testers believed to be acidic and non acidic (chr type -qualitative).</span>
 <span id="cb17-187"><a href="#cb17-187"></a></span>
 <span id="cb17-188"><a href="#cb17-188"></a>After that, I would like to run an analysis on the likelihood of a person to be correct based on their favorite coffee beverage.</span>
 <span id="cb17-189"><a href="#cb17-189"></a></span>
