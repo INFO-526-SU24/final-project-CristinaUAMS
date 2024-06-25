@@ -28,6 +28,7 @@ if (!require("pacman"))
 # Load packages here
 pacman::p_load(cowplot,
                dplyr,
+               ggmosaic,
                ggpmisc,
                ggthemes,
                grid,
@@ -70,13 +71,15 @@ coffeeAcidityCGA <- readr::read_csv(here("data/Acids_in_Coffee_-CGAs.csv"))
 coffeeAcidityOA <- readr::read_csv(here("data/Acids_in_Coffee_-OAs.csv"))
 ```
 
-# Using Quarto for presentations
 
-## Quarto
 
--   The presentation is created using the Quarto CLI
+## Why do we experience coffee the way we do?
 
--   `##` sets the start of a new slide
+-   Organic acids (OA) and Chlorogenic Acids (CGA) give coffee its various different notes of flavor. 
+ - There are over 50 different acids (OA and CGA) studied by Yeager et al in the paper (used herein) which are concentrated differently in different beans and roasts of coffee. 
+
+-   CGAs in their original form contribute to the acidic notes in lighter roasted coffees but as beans are heated by roasting, they are broken down into bitter components
+- OAs contribute to acidic notes in coffees. 
 
 ## Layouts
 
@@ -98,12 +101,12 @@ or in two columns
 
 -   this
 
-## Code
+## What variables are coming in from the study?
 
 ```{r, echo=FALSE}
-CGA <- coffeeAcidityCGA[1:33] |> glimpse()
+CGA <- coffeeAcidityCGA[1:33] 
 
-OA <- coffeeAcidityOA[1:35] |> glimpse()
+OA <- coffeeAcidityOA[1:35] 
 
 cga_by_roast <- CGA |>
   group_by(Roast) |> 
@@ -111,15 +114,15 @@ cga_by_roast <- CGA |>
          roast_sd_cga = sd(`Total CGA`, na.rm = TRUE)) |>
   select(Type, Roast, Extraction, `Total CGA`, roast_average_cga, roast_sd_cga)
 
-cga_by_roast |> glimpse()
-
+colnames(OA)
+colnames(CGA)
 oa_by_roast <- OA |>
   group_by(Roast) |>
   mutate(roast_average_oa = mean(Total, na.rm = TRUE),
          roast_sd_oa = sd(Total, na.rm = TRUE)) |>
   select(Type, Roast, Extraction, Total, roast_average_oa, roast_sd_oa)
 
-oa_by_roast |> glimpse()
+
 
 roast_table <- oa_by_roast |>
   inner_join(cga_by_roast, 
@@ -133,7 +136,7 @@ select_coffee_data <- coffeeData |>
          coffee_b_bitterness, coffee_b_acidity, coffee_b_personal_preference, 
          coffee_c_bitterness, coffee_c_acidity, coffee_c_personal_preference,
          coffee_d_bitterness, coffee_d_acidity, coffee_d_personal_preference,
-         prefer_overall, political_affiliation) |> glimpse()
+         prefer_overall, political_affiliation) 
 
 light_table <- roast_table |> 
   filter(Roast == "Light") |>
@@ -387,6 +390,34 @@ judgement_day[complete.cases(judgement_day),] |>
 
 
 ```
+## Coffee Preference by Political Party
+```{r}
+
+coffeetics <- select_coffee_data |> 
+  select(prefer_overall, political_affiliation) 
+
+coffeetics[complete.cases(coffeetics), ] |> 
+  ftable() |> prop.table(margin = 2) |> round(2)
+
+coffeetics |>
+  ggplot() + 
+
+  geom_mosaic(aes(
+    x = product(prefer_overall), 
+    fill = prefer_overall, conds = product(political_affiliation))) +
+  scale_fill_paletteer_d("palettetown::zigzagoon", 
+                         na.value = "antiquewhite3", name = NULL) +
+   labs(
+    title = "Respondent's preference by political party",
+    
+  ) +
+  theme(
+    panel.grid = element_blank(),
+    axis.title = element_blank(),
+
+  )
+
+```
 ## Plot and text
 
 ::: columns
@@ -435,10 +466,6 @@ Limitations:
 
 2.  There should not be spaces after the opening `$` or before the closing `$`.
 
-# Wrap up
+## Wrap up
 
-## Feeling adventurous?
-
--   You are welcomed to use the default styling of the slides. In fact, that's what I expect majority of you will do. You will differentiate yourself with the content of your presentation.
-
--   But some of you might want to play around with slide styling. Some solutions for this can be found at https://quarto.org/docs/presentations/revealjs.
+Yeager, S. E., Batali, M. E., Guinard, J. X., & Ristenpart, W. D. (2021). Acids in coffee: A review of sensory measurements and meta-analysis of chemical composition. Critical Reviews in Food Science and Nutrition, 63(8), 1010–1036. https://doi.org/10.1080/10408398.2021.1957767
