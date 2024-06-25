@@ -1,0 +1,114 @@
+[
+  {
+    "objectID": "proposal.html",
+    "href": "proposal.html",
+    "title": "Coffee Curiosity",
+    "section": "",
+    "text": "if (!require(\"pacman\")) \n  install.packages(\"pacman\")\n\n# use this line for installing/loading\npacman::p_load(cowplot,\n               dplyr,\n               here,\n               knitr,\n               magick,\n               scales,\n               shiny,\n               tidyverse,\n               viridis)\n\ndevtools::install_github(\"tidyverse/dsbox\")"
+  },
+  {
+    "objectID": "proposal.html#dataset",
+    "href": "proposal.html#dataset",
+    "title": "Coffee Curiosity",
+    "section": "Dataset",
+    "text": "Dataset\n\ncoffeeData &lt;- readr::read_csv(('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-05-14/coffee_survey.csv'))\n\nThe Coffee Data comes from a coffee taste test held on YouTube in Oct 2023. Data was self reported by participants. It was aggregated by a data blogger named Robert McKeon Aloe who analyzed the data the following month.\nThe Dimensions of the data are:\n\ndim(coffeeData)\n\n[1] 4042   57\n\n\nThe variables collected are:\n\ncolnames(coffeeData)\n\n [1] \"submission_id\"                \"age\"                         \n [3] \"cups\"                         \"where_drink\"                 \n [5] \"brew\"                         \"brew_other\"                  \n [7] \"purchase\"                     \"purchase_other\"              \n [9] \"favorite\"                     \"favorite_specify\"            \n[11] \"additions\"                    \"additions_other\"             \n[13] \"dairy\"                        \"sweetener\"                   \n[15] \"style\"                        \"strength\"                    \n[17] \"roast_level\"                  \"caffeine\"                    \n[19] \"expertise\"                    \"coffee_a_bitterness\"         \n[21] \"coffee_a_acidity\"             \"coffee_a_personal_preference\"\n[23] \"coffee_a_notes\"               \"coffee_b_bitterness\"         \n[25] \"coffee_b_acidity\"             \"coffee_b_personal_preference\"\n[27] \"coffee_b_notes\"               \"coffee_c_bitterness\"         \n[29] \"coffee_c_acidity\"             \"coffee_c_personal_preference\"\n[31] \"coffee_c_notes\"               \"coffee_d_bitterness\"         \n[33] \"coffee_d_acidity\"             \"coffee_d_personal_preference\"\n[35] \"coffee_d_notes\"               \"prefer_abc\"                  \n[37] \"prefer_ad\"                    \"prefer_overall\"              \n[39] \"wfh\"                          \"total_spend\"                 \n[41] \"why_drink\"                    \"why_drink_other\"             \n[43] \"taste\"                        \"know_source\"                 \n[45] \"most_paid\"                    \"most_willing\"                \n[47] \"value_cafe\"                   \"spent_equipment\"             \n[49] \"value_equipment\"              \"gender\"                      \n[51] \"gender_specify\"               \"education_level\"             \n[53] \"ethnicity_race\"               \"ethnicity_race_specify\"      \n[55] \"employment_status\"            \"number_children\"             \n[57] \"political_affiliation\"       \n\n\nThe reason I selected this data set is because I enjoy coffee very much! Too much? Probably not. I have 6 different coffee brewing apparatuses in my kitchen.\n\nmokaPot &lt;- (here(\"images/mokaPot.png\"))\nespressoMaker &lt;- (here(\"images/espressoMachine.png\"))\nfrenchPress &lt;- (here(\"images/frenchPress.png\"))\npod &lt;- (here(\"images/kCup.png\"))\npercolator &lt;- (here(\"images/percolator.png\"))\npourOver &lt;- (here(\"images/pourOver.png\"))\n\nggdraw() +\n  draw_image(mokaPot, width = 0.33, height = .5, y = 0, interpolate = TRUE) +\n  draw_image(espressoMaker, width = 0.33, height = 0.5, x = 0.33, y = 0, interpolate = TRUE) +\n  draw_image(frenchPress, width = 0.33, height = 0.5, x = 0.67, y = 0, interpolate = TRUE) + \n  draw_image(pod, width = 0.33, height = 0.5, y = 0.5 , interpolate = TRUE) +\n  draw_image(percolator, width = 0.33, height = 0.5, x = 0.33, y = 0.5, interpolate = TRUE) + \n  draw_image(pourOver, width = 0.33, height = 0.5, x = 0.67, y = 0.5, interpolate = TRUE )\n\n\n\n\nImages from amazon.com reproduced here without permission\n\n\n\n\nLooking at data on coffee for six weeks seemed like a natural choice."
+  },
+  {
+    "objectID": "proposal.html#questions",
+    "href": "proposal.html#questions",
+    "title": "Coffee Curiosity",
+    "section": "Questions",
+    "text": "Questions\nQuestion 1:\nDo people tend to quantify acidity and bitterness in coffee correctly and is their ability to judge dependent on their preference in coffee?\nQuestion 2:\nDoes political affiliation play any part in coffee preference?"
+  },
+  {
+    "objectID": "proposal.html#analysis-plan",
+    "href": "proposal.html#analysis-plan",
+    "title": "Coffee Curiosity",
+    "section": "Analysis plan",
+    "text": "Analysis plan\n\nAdditional data will come from: Acids in coffee: A review of sensory measurements and meta-analysis of chemical composition, by Yeager et al\n\nWhen it comes to what specific plotting method will best represent this data, it is difficult to know with certainty at this time. Anytime a correlation is made, scatterplots are an obvious choice with the possibility of facet wrapping by type.\nThere are two relevant CSVs one contains data on total levels of organic acids, known to produce the acidic qualities of coffee and another contains data on total levels of chlorogenic acids in coffee - the total amount of which is dependent on roast level and correlated (inversely) with the “bitterness” flavor profiles.\nThis data will be joined on the type of roast ( a variable in both).\nThis study provides definitive data on the levels of acidity in coffee by roast as well as a source for what causes both bitterness and acidity in taste and will be helpful in determining subjects taste accuracy.\n\nThey have quite a few very nice plots of their own, I think the one that best summarizes the data I’ll be using is:\n\nplotAcidByRoast &lt;- here(\"images/acidLevelByRoast.png\")\n\nggdraw() +\n  draw_image(plotAcidByRoast)\n\n\n\n\nImage from Yeager et al, Acids in Coffee\n\n\n\n\nThese tables will not be used in my report but are included here for informational purposes only. It shows the concentrations of total organic acids (on top) for Arabica (left) and Robusta (right) at different roast levels as well as different concentrations of CGAs for the same (bottom).\nAs discussed in their paper, CGAs form chlorogenic acid lactones during roasting which impart the bitterness into the coffee. After roasting, the CGAs are no longer present and the lactones are, giving the bitter profile. Similar bitterness occurs through breakdown resulting from other organic acid compounds.\n\nReformatting Data\nDue to some type of formatting error, roughly 1500 and 250 NA columns were appended to each dataset. Trimming those off, allows a more realistic view of the actual data names and size.\nThis new data for chlorogenic acids has the dimensions and columns:\n\n## Dimensions and columns in the chlorogenic acids dataset:\ndim(coffeeAcidityCGA[1:33])\n\n[1] 1344   33\n\n\nThe columns are called:\n\n## The columns are called:\ncolnames(coffeeAcidityCGA[1:33])\n\n [1] \"Source\"                    \"Type\"                     \n [3] \"Roast\"                     \"Extraction\"               \n [5] \"Stats\"                     \"Other\"                    \n [7] \"Units\"                     \"total CQA\"                \n [9] \"Total FQA\"                 \"Total diCQA\"              \n[11] \"3-CQA\"                     \"4-CQA\"                    \n[13] \"5-CQA\"                     \"3-FQA\"                    \n[15] \"5-pCoQA\"                   \"5-FQA\"                    \n[17] \"Ferulic Acid\"              \"4-FQA\"                    \n[19] \"3,5-diCQA\"                 \"3,4-diCQA\"                \n[21] \"4,5-DiCQA\"                 \"3-pCo,5-CQA\"              \n[23] \"3-C,4-FQA\"                 \"3-C,5-FQA\"                \n[25] \"4,5-FQA\"                   \"3-C,4-FQA and 3-pCo,4-CQA\"\n[27] \"3-C,5-DQA\"                 \"3-C,4-DQA\"                \n[29] \"3-D,5-FQA\"                 \"Nicotinic Acid\"           \n[31] \"3-CGA\"                     \"Total CGA\"                \n[33] \"Notes\"                    \n\n\nThe new data for organic acids has dimension:\n\n## The dimensions of the Organic Acids dataset is:\ndim(coffeeAcidityOA[1:33])\n\n[1] 287  33\n\n\nThat data has column names:\n\n## Those columns are called:\ncolnames(coffeeAcidityOA[1:33])\n\n [1] \"Source\"         \"Type\"           \"Roast\"          \"Extraction\"    \n [5] \"Stat\"           \"Other\"          \"Units\"          \"Citric\"        \n [9] \"Formic\"         \"Malic\"          \"Pyruvic\"        \"Quinic\"        \n[13] \"Succinic\"       \"Acetic\"         \"Oxalic\"         \"Fumaric\"       \n[17] \"Tartaric\"       \"Lactic\"         \"Glycolic\"       \"Nitric\"        \n[21] \"Mesaconic\"      \"Maleic\"         \"Isocitric\"      \"Citraconic\"    \n[25] \"Propionic\"      \"2-Furoic\"       \"Pyroglutamic\"   \"Phosphoric\"    \n[29] \"Levulinic Acid\" \"Methylsuccinic\" \"Nicotinic\"      \"Ascorbic\"      \n[33] \"Hydroxybenzoic\"\n\n\nWorking with this additional data will require that I combine these three datasets along the “roast” variable and compare the relevant variables.\nFor Organic Acids, I will need to create a new variable which adds up the total relevant organic acids. This will be a double type as it is a measure of concentration.\nIn the CGAs Table, I will similarly need to create a new variable which sums the total relevant CGAs. This will be a double type as it is a measure of concentration.\nOnce this has been done, those two variables can be compared, by roast (chr type - qualitative), against what the taste testers believed to be acidic and non acidic (chr type -qualitative).\nAfter that, I would like to run an analysis on the likelihood of a person to be correct based on their favorite coffee beverage.\nLooking at the second question, will be much more straightforward examining the political affiliation selection made by the participants as well as which of the coffees they preferred.\n\nWeekly Plan of Attack Table: Last updated: 5/28/2024\n\n\nTask Name\nStatus\nAssignee\nDue\nPriority\nSummary\n\n\n\n\nAdd any extras or polish up wording\nnot yet started\nCristina Lafuente\nJune 10, 2024\nLow\nAs possible additions *nice to haves* pop up, add them to this list\n\n\nBegin working on presentation and write up\nnot yet started\nCristina Lafuente\nJune 3, 2024\nModerate\nOnce feedback is in, begin wrangling data and working on presentation\n\n\nFinish proposal and give feedback\ncomplete\nCristina Lafuente\nWednesday, May 29: 5pm\nHigh\nPush completed proposal and complete peer review"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Project Title",
+    "section": "",
+    "text": "Add project abstract here."
+  },
+  {
+    "objectID": "index.html#abstract",
+    "href": "index.html#abstract",
+    "title": "Project Title",
+    "section": "",
+    "text": "Add project abstract here."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "This project was developed by [Team Name] For INFO 526 - Data Analysis and Visualization at the University of Arizona, taught by Dr. Greg Chism. The team is comprised of the following team members.\n\nTeam member 1: One sentence description of Team member 1 (e.g., year, major, etc.).\nTeam member 2: One sentence description of Team member 2 (e.g., year, major, etc.).\nTeam member 3: One sentence description of Team member 3 (e.g., year, major, etc.).\nTeam member 4: One sentence description of Team member 4 (e.g., year, major, etc.)."
+  },
+  {
+    "objectID": "presentation.html#why-do-we-experience-coffee-the-way-we-do",
+    "href": "presentation.html#why-do-we-experience-coffee-the-way-we-do",
+    "title": "Coffee Curiosity",
+    "section": "Why do we experience coffee the way we do?",
+    "text": "Why do we experience coffee the way we do?\n\nTidyTuesday dataset had taste test. What is bitterness and acidity?\nOrganic acids (OA) and Chlorogenic Acids (CGA) give coffee flavor\nThere are over 50 different acids (OA and CGA) studied by Yeager et al\nEach roast and blend has its own concentration\nCGAs contribute to the acidic notes until heated then become bitter\nOAs contribute to acidic notes in coffees."
+  },
+  {
+    "objectID": "presentation.html#what-variables-are-coming-in-from-the-study",
+    "href": "presentation.html#what-variables-are-coming-in-from-the-study",
+    "title": "Coffee Curiosity",
+    "section": "What variables are coming in from the study?",
+    "text": "What variables are coming in from the study?\n\n\n [1] \"Source\"         \"Type\"           \"Roast\"          \"Extraction\"    \n [5] \"Stat\"           \"Other\"          \"Units\"          \"Citric\"        \n [9] \"Formic\"         \"Malic\"          \"Pyruvic\"        \"Quinic\"        \n[13] \"Succinic\"       \"Acetic\"         \"Oxalic\"         \"Fumaric\"       \n[17] \"Tartaric\"       \"Lactic\"         \"Glycolic\"       \"Nitric\"        \n[21] \"Mesaconic\"      \"Maleic\"         \"Isocitric\"      \"Citraconic\"    \n[25] \"Propionic\"      \"2-Furoic\"       \"Pyroglutamic\"   \"Phosphoric\"    \n[29] \"Levulinic Acid\" \"Methylsuccinic\" \"Nicotinic\"      \"Ascorbic\"      \n[33] \"Hydroxybenzoic\" \"Total\"          \"Notes\"         \n\n\n [1] \"Source\"                    \"Type\"                     \n [3] \"Roast\"                     \"Extraction\"               \n [5] \"Stats\"                     \"Other\"                    \n [7] \"Units\"                     \"total CQA\"                \n [9] \"Total FQA\"                 \"Total diCQA\"              \n[11] \"3-CQA\"                     \"4-CQA\"                    \n[13] \"5-CQA\"                     \"3-FQA\"                    \n[15] \"5-pCoQA\"                   \"5-FQA\"                    \n[17] \"Ferulic Acid\"              \"4-FQA\"                    \n[19] \"3,5-diCQA\"                 \"3,4-diCQA\"                \n[21] \"4,5-DiCQA\"                 \"3-pCo,5-CQA\"              \n[23] \"3-C,4-FQA\"                 \"3-C,5-FQA\"                \n[25] \"4,5-FQA\"                   \"3-C,4-FQA and 3-pCo,4-CQA\"\n[27] \"3-C,5-DQA\"                 \"3-C,4-DQA\"                \n[29] \"3-D,5-FQA\"                 \"Nicotinic Acid\"           \n[31] \"3-CGA\"                     \"Total CGA\"                \n[33] \"Notes\""
+  },
+  {
+    "objectID": "presentation.html#questions",
+    "href": "presentation.html#questions",
+    "title": "Coffee Curiosity",
+    "section": "Questions",
+    "text": "Questions\n\nDo people experience and quantify coffee’s acidity and bitterness in a way that is consistent with objective data? And do their coffee preferences affect their perception?\nDoes political affiliation play any part in coffee preference?"
+  },
+  {
+    "objectID": "presentation.html#lightest-coffees",
+    "href": "presentation.html#lightest-coffees",
+    "title": "Coffee Curiosity",
+    "section": "Lightest Coffees",
+    "text": "Lightest Coffees"
+  },
+  {
+    "objectID": "presentation.html#darkest-coffees",
+    "href": "presentation.html#darkest-coffees",
+    "title": "Coffee Curiosity",
+    "section": "Darkest Coffees",
+    "text": "Darkest Coffees"
+  },
+  {
+    "objectID": "presentation.html#who-is-right",
+    "href": "presentation.html#who-is-right",
+    "title": "Coffee Curiosity",
+    "section": "Who is right?",
+    "text": "Who is right?"
+  },
+  {
+    "objectID": "presentation.html#coffee-preference-by-political-party",
+    "href": "presentation.html#coffee-preference-by-political-party",
+    "title": "Coffee Curiosity",
+    "section": "Coffee Preference by Political Party",
+    "text": "Coffee Preference by Political Party\n\n\n               political_affiliation Democrat Independent No affiliation Republican\nprefer_overall                                                                     \nCoffee A                                 0.22        0.23           0.23       0.15\nCoffee B                                 0.19        0.20           0.21       0.27\nCoffee C                                 0.19        0.21           0.21       0.24\nCoffee D                                 0.41        0.35           0.35       0.34"
+  },
+  {
+    "objectID": "presentation.html#conclusions",
+    "href": "presentation.html#conclusions",
+    "title": "Coffee Curiosity",
+    "section": "Conclusions",
+    "text": "Conclusions\n\nIt is possible that there is some correlation between those who prefer light roast and the more accurate perception of coffee’s bitterness but only sightly.\nPolitical affiliation does not appear to play any real role in coffee preference though it is interesting to note that Republicans were the only party to prefer Coffee B (second to D)\nPossible source for future study - remove coffee D and retest political affiliation and preference."
+  },
+  {
+    "objectID": "presentation.html#source",
+    "href": "presentation.html#source",
+    "title": "Coffee Curiosity",
+    "section": "Source",
+    "text": "Source\nYeager, S. E., Batali, M. E., Guinard, J. X., & Ristenpart, W. D. (2021). Acids in coffee: A review of sensory measurements and meta-analysis of chemical composition. Critical Reviews in Food Science and Nutrition, 63(8), 1010–1036. https://doi.org/10.1080/10408398.2021.1957767"
+  }
+]
