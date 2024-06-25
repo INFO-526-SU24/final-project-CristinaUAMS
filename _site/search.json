@@ -158,7 +158,7 @@
     "href": "presentation.html#why-do-we-experience-coffee-the-way-we-do",
     "title": "Coffee Curiosity",
     "section": "Why do we experience coffee the way we do?",
-    "text": "Why do we experience coffee the way we do?\n\nOrganic acids (OA) and Chlorogenic Acids (CGA) give coffee its various different notes of flavor.\nThere are over 50 different acids (OA and CGA) studied by Yeager et al in the paper (used herein) which are concentrated differently in different beans and roasts of coffee.\nCGAs in their original form contribute to the acidic notes in lighter roasted coffees but as beans are heated by roasting, they are broken down into bitter components\nOAs contribute to acidic notes in coffees."
+    "text": "Why do we experience coffee the way we do?\n\nTidyTuesday dataset had taste test. What is bitterness and acidity?\nOrganic acids (OA) and Chlorogenic Acids (CGA) give coffee flavor\nThere are over 50 different acids (OA and CGA) studied by Yeager et al\nEach roast and blend has its own concentration\nCGAs contribute to the acidic notes until heated then become bitter\nOAs contribute to acidic notes in coffees."
   },
   {
     "objectID": "presentation.html#what-variables-are-coming-in-from-the-study",
@@ -173,5 +173,26 @@
     "title": "Coffee Curiosity",
     "section": "Wrap up",
     "text": "Wrap up\nYeager, S. E., Batali, M. E., Guinard, J. X., & Ristenpart, W. D. (2021). Acids in coffee: A review of sensory measurements and meta-analysis of chemical composition. Critical Reviews in Food Science and Nutrition, 63(8), 1010–1036. https://doi.org/10.1080/10408398.2021.1957767"
+  },
+  {
+    "objectID": "presentation.html#questions",
+    "href": "presentation.html#questions",
+    "title": "Coffee Curiosity",
+    "section": "Questions",
+    "text": "Questions\n\nDo people experience and quantify coffee’s acidity and bitterness in a way that is consistent with objective data? And do their coffee preferences affect their perception?\nDoes political affiliation play any part in coffee preference?"
+  },
+  {
+    "objectID": "presentation.html#conclusions",
+    "href": "presentation.html#conclusions",
+    "title": "Coffee Curiosity",
+    "section": "Conclusions",
+    "text": "Conclusions\n\nIt is possible that there is some correlation between those who prefer light roast and the more accurate perception of coffee’s bitterness but only sightly.\nPolitical affiliation does not appear to play any real role in coffee preference though it is interesting to note that Republicans were the only party to prefer Coffee B (second to D)\nPossible source for future study - remove coffee D and retest political affiliation and preference."
+  },
+  {
+    "objectID": "presentation.html#source",
+    "href": "presentation.html#source",
+    "title": "Coffee Curiosity",
+    "section": "Source",
+    "text": "Source\nYeager, S. E., Batali, M. E., Guinard, J. X., & Ristenpart, W. D. (2021). Acids in coffee: A review of sensory measurements and meta-analysis of chemical composition. Critical Reviews in Food Science and Nutrition, 63(8), 1010–1036. https://doi.org/10.1080/10408398.2021.1957767"
   }
 ]
