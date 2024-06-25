@@ -26,7 +26,8 @@ execute:
 if (!require("pacman")) 
   install.packages("pacman")
 # Load packages here
-pacman::p_load(dplyr,
+pacman::p_load(cowplot,
+               dplyr,
                ggpmisc,
                ggthemes,
                grid,
@@ -47,16 +48,14 @@ pacman::p_load(dplyr,
 #| include: false
 
 
-sysfonts::font_add_google(name = "Playfair Display", family = "Playfair Display")
-showtext::showtext_auto()
 # Plot theme
-ggplot2::theme_set(ggplot2::theme_minimal(base_size = 16, base_family = "Playfair Display"))
+ggplot2::theme_set(ggplot2::theme_minimal(base_size = 16))
 
 # For better figure resolution
 knitr::opts_chunk$set(
   fig.retina = 3, 
-  dpi = 300, 
-  fig.width = 6, 
+  dpi = 600, 
+  fig.width = 12, 
   fig.asp = 0.618 
   )
 ```
@@ -108,15 +107,17 @@ OA <- coffeeAcidityOA[1:35] |> glimpse()
 
 cga_by_roast <- CGA |>
   group_by(Roast) |> 
-  mutate(roast_average_cga = mean(`Total CGA`, na.rm = TRUE) ) |>
-  select(Type, Roast, Extraction, `Total CGA`, roast_average_cga)
+  mutate(roast_average_cga = mean(`Total CGA`, na.rm = TRUE),
+         roast_sd_cga = sd(`Total CGA`, na.rm = TRUE)) |>
+  select(Type, Roast, Extraction, `Total CGA`, roast_average_cga, roast_sd_cga)
 
 cga_by_roast |> glimpse()
 
 oa_by_roast <- OA |>
   group_by(Roast) |>
-  mutate(roast_average_oa = mean(Total, na.rm = TRUE)) |>
-  select(Type, Roast, Extraction, Total, roast_average_oa)
+  mutate(roast_average_oa = mean(Total, na.rm = TRUE),
+         roast_sd_oa = sd(Total, na.rm = TRUE)) |>
+  select(Type, Roast, Extraction, Total, roast_average_oa, roast_sd_oa)
 
 oa_by_roast |> glimpse()
 
@@ -137,32 +138,255 @@ select_coffee_data <- coffeeData |>
 light_table <- roast_table |> 
   filter(Roast == "Light") |>
   select(Roast, roast_average_oa, roast_average_cga) |>
+  mutate(
+    Total = (roast_average_oa + roast_average_cga)
+  ) |>
   rename(`Light OA` = roast_average_oa, `Light CGA` = roast_average_cga) |> 
   distinct()
   
+medium_table <- roast_table |> 
+  filter(Roast == "Medium") |>
+  select(Roast, roast_average_oa, roast_average_cga) |>
+   mutate(
+    Total = (roast_average_oa + roast_average_cga)
+  ) |>
+  rename(`Medium OA` = roast_average_oa, `Medium CGA` = roast_average_cga) |> 
+  distinct()
 
-select_coffee_data |> 
-  select(coffee_a_acidity, coffee_a_bitterness, prefer_overall) |>
-  pivot_longer(!prefer_overall,  names_to = "flavor_profile", values_to = "rating") |>
-  ggplot(aes( prefer_overall,  fill = as.factor(rating))) +
-  geom_bar(aes(fill = as.factor(rating)), position = "dodge") +
-  annotate(geom = "table",
-           x =0.25, y = 800,
-           label = list(light_table),
-           hjust = 0.8, vjust = 0.3, ) +
- 
-facet_wrap(~flavor_profile) +
-  coord_flip() +
-  scale_fill_paletteer_d("palettetown::zigzagoon") 
+dark_table <- roast_table |> 
+  filter(Roast == "Dark") |>
+  select(Roast, roast_average_oa, roast_average_cga) |>
+   mutate(
+    Total = (roast_average_oa + roast_average_cga)
+  ) |>
+  rename(`Dark OA` = roast_average_oa, `Dark CGA` = roast_average_cga) |> 
+  distinct()
+
+green_table <- roast_table |> 
+  filter(Roast == "Green") |>
+  select(Roast, roast_average_oa, roast_average_cga) |>
+   mutate(
+    Total = (roast_average_oa + roast_average_cga)
+  ) |>
+  rename(`Green OA` = roast_average_oa, `Green CGA` = roast_average_cga) |> 
+  distinct()
   
 ```
 
-## Plots
+## Lightest Coffees
 
 ```{r}
+#| out-width: "100%"
+light_plot <- select_coffee_data |> 
+  select(coffee_a_acidity, coffee_a_bitterness, prefer_overall) |>
+  pivot_longer(!prefer_overall, 
+               names_to = "flavor_profile", 
+               values_to = "rating") |>
+  ggplot(aes( prefer_overall,  fill = as.factor(rating))) +
+  geom_bar(aes(fill = as.factor(rating), 
+           color = (
+               ifelse(
+               (flavor_profile == "coffee_a_acidity" & rating %in% c(4,5))|
+                (flavor_profile == "coffee_a_bitterness" & rating %in% c(1,2)),
+               "turquoise2",  NA ))),
+           position = "dodge", linewidth = 1) +
+ 
+ guides(
+  color = "none"
+    ) +
+  facet_wrap(~flavor_profile, 
+           scales = "free_y",
+           strip.position = "top",
+           labeller = as_labeller(c(
+             coffee_a_acidity = "Acidity", 
+             coffee_a_bitterness = "Bitterness"))) +
+  annotate(geom = "table",
+           x =0, y = 750,
+           label = list(light_table),
+           hjust = 0.8, vjust = 0.3, ) +
+  scale_color_identity() +
+  coord_flip() +
+  scale_fill_paletteer_d("palettetown::zigzagoon", 
+                         na.value = "antiquewhite3",
+                         name = "Taster Rating") +
+  labs(
+    x = NULL,
+    y = "Respondents",
+    title = "Light Roast"
+  )
+
+medium_plot <- select_coffee_data |> 
+  select(coffee_b_acidity, coffee_b_bitterness, prefer_overall) |>
+  pivot_longer(!prefer_overall, 
+               names_to = "flavor_profile", 
+               values_to = "rating") |>
+  ggplot(aes( prefer_overall,  fill = as.factor(rating))) +
+  geom_bar(aes(fill = as.factor(rating), 
+           color = (
+               ifelse(
+              (flavor_profile == "coffee_b_acidity" & rating %in% c(2, 3))|
+                (flavor_profile == "coffee_b_bitterness" & rating %in% c(3, 4)),
+               "turquoise2",  NA ))),
+           position = "dodge", linewidth = 1) +
+  annotate(geom = "table",
+           x =0, y = 750,
+           label = list(medium_table),
+           hjust = 0.8, vjust = 0.3, ) +
+ guides(
+  color = "none"
+    ) +
+  facet_wrap(~flavor_profile, 
+           scales = "free_y",
+           strip.position = "top",
+           labeller = as_labeller(c(
+             coffee_b_acidity = "Acidity", 
+             coffee_b_bitterness = "Bitterness"))) +
+  scale_color_identity() +
+  coord_flip() +
+  scale_fill_paletteer_d("palettetown::zigzagoon", 
+                         na.value = "antiquewhite3",
+                         name = "Taster Rating") +
+  labs(
+    x = NULL,
+    y = "Respondents",
+    title = "Medium Roast"
+  )
+
+dark_plot <- select_coffee_data |> 
+  select(coffee_c_acidity, coffee_c_bitterness, prefer_overall) |>
+  pivot_longer(!prefer_overall, 
+               names_to = "flavor_profile", 
+               values_to = "rating") |>
+  ggplot(aes( prefer_overall,  fill = as.factor(rating))) +
+  geom_bar(aes(fill = as.factor(rating), 
+           color = (
+               ifelse(
+              (flavor_profile == "coffee_c_acidity" & rating %in% c(2, 3))|
+                (flavor_profile == "coffee_c_bitterness" & rating %in% c(4,5)),
+               "turquoise2",  NA ))),
+           position = "dodge", linewidth = 1) +
+  annotate(geom = "table",
+           x =0, y = 750,
+           label = list(dark_table),
+           hjust = 0.8, vjust = 0.3, ) +
+ guides(
+  color = "none"
+    ) +
+  facet_wrap(~flavor_profile, 
+           scales = "free_y",
+           strip.position = "top",
+           labeller = as_labeller(c(
+             coffee_c_acidity = "Acidity", 
+             coffee_c_bitterness = "Bitterness"))) +
+  scale_color_identity() +
+  coord_flip() +
+  scale_fill_paletteer_d("palettetown::zigzagoon", 
+                         na.value = "antiquewhite3",
+                         name = "Taster Rating") +
+  labs(
+    x = NULL,
+    y = "Respondents", 
+    title = "Dark Roast"
+  )
+
+green_plot <- select_coffee_data |> 
+  select(coffee_d_acidity, coffee_d_bitterness, prefer_overall) |>
+  pivot_longer(!prefer_overall, 
+               names_to = "flavor_profile", 
+               values_to = "rating") |>
+  ggplot(aes( prefer_overall,  fill = as.factor(rating))) +
+  geom_bar(aes(fill = as.factor(rating), 
+           color = (
+               ifelse(
+              (flavor_profile == "coffee_d_acidity" & rating %in% c(4, 5))|
+                (flavor_profile == "coffee_d_bitterness" & rating %in% c(1, 2)),
+               "turquoise2",  NA ))),
+           position = "dodge", linewidth = 1) +
+  annotate(geom = "table",
+           x = 0, y = 750,
+           label = list(green_table),
+           hjust = 0.8, vjust = 0.3, ) +
+ guides(
+  color = "none"
+    ) +
+  facet_wrap(~flavor_profile, 
+           scales = "free_y",
+           strip.position = "top",
+           labeller = as_labeller(c(
+             coffee_d_acidity = "Acidity", 
+             coffee_d_bitterness = "Bitterness"))) +
+  scale_color_identity() +
+  coord_flip() +
+  scale_fill_paletteer_d("palettetown::zigzagoon", 
+                         na.value = "antiquewhite3",
+                         name = "Taster Rating") +
+  labs(
+    x = NULL,
+    y = "Respondents",
+    title = "Green/ Unwashed"
+  )
+
+
+green_plot + light_plot +
+  plot_layout(guides = "collect", axis_titles = "collect") &
+  theme(legend.position = "bottom")
 
 ```
 
+## Darkest Coffees
+```{r}
+medium_plot + dark_plot +
+  plot_layout(guides = "collect", axis_titles = "collect_y") &
+  theme(legend.position = "bottom")
+```
+
+## Who is right?
+```{r}
+judgement_day <- select_coffee_data |> 
+  select(- c(submission_id, political_affiliation, coffee_a_personal_preference, coffee_b_personal_preference, coffee_c_personal_preference, coffee_d_personal_preference)) |> 
+         pivot_longer(!prefer_overall, 
+               names_to = "flavor_profile", 
+               values_to = "rating") |> 
+  mutate(
+    judgement = case_when(
+      (flavor_profile == "coffee_a_acidity") & (rating %in% c(4,5)) ~ "Correct",
+      (flavor_profile == "coffee_a_bitterness") & (rating %in% c(1,2)) ~ "Correct",
+      (flavor_profile == "coffee_b_acidity") & (rating %in% c(2, 3)) ~"Correct",
+      (flavor_profile == "coffee_b_bitterness" & rating %in% c(3, 4)) ~ "Correct",
+      flavor_profile == "coffee_c_acidity" & rating %in% c(2, 3) ~ "Correct",
+                (flavor_profile == "coffee_c_bitterness" & rating %in% c(4,5)) ~ "Correct",
+      flavor_profile == "coffee_d_acidity" & rating %in% c(4, 5)~ "Correct",
+                (flavor_profile == "coffee_d_bitterness" & rating %in% c(1, 2)) ~ "Correct",
+      is.na(rating) ~ NA_character_,
+      TRUE ~ "Wrong"
+      
+    )
+  )
+
+judgement_day[complete.cases(judgement_day),] |>
+  group_by(prefer_overall, flavor_profile) |>
+  count(judgement) |>
+  mutate(
+    flavor_profile = str_remove(flavor_profile, 'coffee_[a-z]_'),
+    cumulative_percent = n / sum(n)*100,
+  ) |> 
+  ggplot(aes(x = prefer_overall, y = cumulative_percent, fill = judgement)) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual(values = c(
+    "Correct" = "darkolivegreen3", 
+    "Wrong" = "burlywood4"),
+    name = "Judgement") +
+  facet_wrap(~flavor_profile) +
+  coord_flip()+
+   labs(
+    x = NULL,
+    y = "Cumulative Percent",
+    title = "Respondent's judgement broken down by their preferred coffee"
+  )
+
+
+
+```
 ## Plot and text
 
 ::: columns
