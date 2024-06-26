@@ -42,69 +42,6 @@
     "text": "Add project abstract here."
   },
   {
-    "objectID": "presentation.html#quarto",
-    "href": "presentation.html#quarto",
-    "title": "Coffee Curiosity",
-    "section": "Quarto",
-    "text": "Quarto\n\nThe presentation is created using the Quarto CLI\n## sets the start of a new slide"
-  },
-  {
-    "objectID": "presentation.html#layouts",
-    "href": "presentation.html#layouts",
-    "title": "Coffee Curiosity",
-    "section": "Layouts",
-    "text": "Layouts\nYou can use plain text\n\n\n\nor bullet points1\n\n\nor in two columns\n\n\n\nlike\nthis\n\nAnd add footnotes"
-  },
-  {
-    "objectID": "presentation.html#code",
-    "href": "presentation.html#code",
-    "title": "Coffee Curiosity",
-    "section": "Code",
-    "text": "Code\n\n\n [1] \"Source\"         \"Type\"           \"Roast\"          \"Extraction\"    \n [5] \"Stat\"           \"Other\"          \"Units\"          \"Citric\"        \n [9] \"Formic\"         \"Malic\"          \"Pyruvic\"        \"Quinic\"        \n[13] \"Succinic\"       \"Acetic\"         \"Oxalic\"         \"Fumaric\"       \n[17] \"Tartaric\"       \"Lactic\"         \"Glycolic\"       \"Nitric\"        \n[21] \"Mesaconic\"      \"Maleic\"         \"Isocitric\"      \"Citraconic\"    \n[25] \"Propionic\"      \"2-Furoic\"       \"Pyroglutamic\"   \"Phosphoric\"    \n[29] \"Levulinic Acid\" \"Methylsuccinic\" \"Nicotinic\"      \"Ascorbic\"      \n[33] \"Hydroxybenzoic\" \"Total\"          \"Notes\"         \n\n\n [1] \"Source\"                    \"Type\"                     \n [3] \"Roast\"                     \"Extraction\"               \n [5] \"Stats\"                     \"Other\"                    \n [7] \"Units\"                     \"total CQA\"                \n [9] \"Total FQA\"                 \"Total diCQA\"              \n[11] \"3-CQA\"                     \"4-CQA\"                    \n[13] \"5-CQA\"                     \"3-FQA\"                    \n[15] \"5-pCoQA\"                   \"5-FQA\"                    \n[17] \"Ferulic Acid\"              \"4-FQA\"                    \n[19] \"3,5-diCQA\"                 \"3,4-diCQA\"                \n[21] \"4,5-DiCQA\"                 \"3-pCo,5-CQA\"              \n[23] \"3-C,4-FQA\"                 \"3-C,5-FQA\"                \n[25] \"4,5-FQA\"                   \"3-C,4-FQA and 3-pCo,4-CQA\"\n[27] \"3-C,5-DQA\"                 \"3-C,4-DQA\"                \n[29] \"3-D,5-FQA\"                 \"Nicotinic Acid\"           \n[31] \"3-CGA\"                     \"Total CGA\"                \n[33] \"Notes\""
-  },
-  {
-    "objectID": "presentation.html#plots",
-    "href": "presentation.html#plots",
-    "title": "Coffee Curiosity",
-    "section": "Plots",
-    "text": "Plots"
-  },
-  {
-    "objectID": "presentation.html#plot-and-text",
-    "href": "presentation.html#plot-and-text",
-    "title": "Coffee Curiosity",
-    "section": "Plot and text",
-    "text": "Plot and text\n\n\n\nSome text\ngoes here"
-  },
-  {
-    "objectID": "presentation.html#tables",
-    "href": "presentation.html#tables",
-    "title": "Coffee Curiosity",
-    "section": "Tables",
-    "text": "Tables\nIf you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,"
-  },
-  {
-    "objectID": "presentation.html#images",
-    "href": "presentation.html#images",
-    "title": "Coffee Curiosity",
-    "section": "Images",
-    "text": "Images\n\nImage credit: Danielle Navarro, Percolate."
-  },
-  {
-    "objectID": "presentation.html#math-expressions",
-    "href": "presentation.html#math-expressions",
-    "title": "Coffee Curiosity",
-    "section": "Math Expressions",
-    "text": "Math Expressions\nYou can write LaTeX math expressions inside a pair of dollar signs, e.g. $\\alpha+\\beta$ renders \\(\\alpha + \\beta\\). You can use the display style with double dollar signs:\n$$\\bar{X}=\\frac{1}{n}\\sum_{i=1}^nX_i$$\n\\[\n\\bar{X}=\\frac{1}{n}\\sum_{i=1}^nX_i\n\\]\nLimitations:\n\nThe source code of a LaTeX math expression must be in one line, unless it is inside a pair of double dollar signs, in which case the starting $$ must appear in the very beginning of a line, followed immediately by a non-space character, and the ending $$ must be at the end of a line, led by a non-space character;\nThere should not be spaces after the opening $ or before the closing $."
-  },
-  {
-    "objectID": "presentation.html#feeling-adventurous",
-    "href": "presentation.html#feeling-adventurous",
-    "title": "Coffee Curiosity",
-    "section": "Feeling adventurous?",
-    "text": "Feeling adventurous?\n\nYou are welcomed to use the default styling of the slides. In fact, that’s what I expect majority of you will do. You will differentiate yourself with the content of your presentation.\nBut some of you might want to play around with slide styling. Some solutions for this can be found at https://quarto.org/docs/presentations/revealjs."
-  },
-  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
@@ -112,18 +49,25 @@
     "text": "This project was developed by [Team Name] For INFO 526 - Data Analysis and Visualization at the University of Arizona, taught by Dr. Greg Chism. The team is comprised of the following team members.\n\nTeam member 1: One sentence description of Team member 1 (e.g., year, major, etc.).\nTeam member 2: One sentence description of Team member 2 (e.g., year, major, etc.).\nTeam member 3: One sentence description of Team member 3 (e.g., year, major, etc.).\nTeam member 4: One sentence description of Team member 4 (e.g., year, major, etc.)."
   },
   {
-    "objectID": "presentation.html",
-    "href": "presentation.html",
-    "title": "Project title",
-    "section": "",
-    "text": "The presentation is created using the Quarto CLI\n## sets the start of a new slide\n\n\n\n\nYou can use plain text\n\n\n\nor bullet points1\n\n\nor in two columns\n\n\n\nlike\nthis\n\n\n\n\n\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic       p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;\n1 (Intercept)   25.3      3.08        8.22 0.00000000358\n2 speed         -0.116    0.0642     -1.81 0.0806       \n\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC\n      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1    0.0983        0.0682  5.82      3.27  0.0806     1  -101.  207.  212.\n# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSome text\ngoes here"
+    "objectID": "presentation.html#why-do-we-experience-coffee-the-way-we-do",
+    "href": "presentation.html#why-do-we-experience-coffee-the-way-we-do",
+    "title": "Coffee Curiosity",
+    "section": "Why do we experience coffee the way we do?",
+    "text": "Why do we experience coffee the way we do?\n\nTidyTuesday dataset had taste test. What is bitterness and acidity?\nOrganic acids (OA) and Chlorogenic Acids (CGA) give coffee flavor\nThere are over 50 different acids (OA and CGA) studied by Yeager et al\nEach roast and blend has its own concentration\nCGAs contribute to the acidic notes until heated then become bitter\nOAs contribute to acidic notes in coffees."
   },
   {
-    "objectID": "presentation.html#footnotes",
-    "href": "presentation.html#footnotes",
-    "title": "Project title",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nAnd add footnotes↩︎"
+    "objectID": "presentation.html#what-variables-are-coming-in-from-the-study",
+    "href": "presentation.html#what-variables-are-coming-in-from-the-study",
+    "title": "Coffee Curiosity",
+    "section": "What variables are coming in from the study?",
+    "text": "What variables are coming in from the study?\n\n\n [1] \"Source\"         \"Type\"           \"Roast\"          \"Extraction\"    \n [5] \"Stat\"           \"Other\"          \"Units\"          \"Citric\"        \n [9] \"Formic\"         \"Malic\"          \"Pyruvic\"        \"Quinic\"        \n[13] \"Succinic\"       \"Acetic\"         \"Oxalic\"         \"Fumaric\"       \n[17] \"Tartaric\"       \"Lactic\"         \"Glycolic\"       \"Nitric\"        \n[21] \"Mesaconic\"      \"Maleic\"         \"Isocitric\"      \"Citraconic\"    \n[25] \"Propionic\"      \"2-Furoic\"       \"Pyroglutamic\"   \"Phosphoric\"    \n[29] \"Levulinic Acid\" \"Methylsuccinic\" \"Nicotinic\"      \"Ascorbic\"      \n[33] \"Hydroxybenzoic\" \"Total\"          \"Notes\"         \n\n\n [1] \"Source\"                    \"Type\"                     \n [3] \"Roast\"                     \"Extraction\"               \n [5] \"Stats\"                     \"Other\"                    \n [7] \"Units\"                     \"total CQA\"                \n [9] \"Total FQA\"                 \"Total diCQA\"              \n[11] \"3-CQA\"                     \"4-CQA\"                    \n[13] \"5-CQA\"                     \"3-FQA\"                    \n[15] \"5-pCoQA\"                   \"5-FQA\"                    \n[17] \"Ferulic Acid\"              \"4-FQA\"                    \n[19] \"3,5-diCQA\"                 \"3,4-diCQA\"                \n[21] \"4,5-DiCQA\"                 \"3-pCo,5-CQA\"              \n[23] \"3-C,4-FQA\"                 \"3-C,5-FQA\"                \n[25] \"4,5-FQA\"                   \"3-C,4-FQA and 3-pCo,4-CQA\"\n[27] \"3-C,5-DQA\"                 \"3-C,4-DQA\"                \n[29] \"3-D,5-FQA\"                 \"Nicotinic Acid\"           \n[31] \"3-CGA\"                     \"Total CGA\"                \n[33] \"Notes\""
+  },
+  {
+    "objectID": "presentation.html#questions",
+    "href": "presentation.html#questions",
+    "title": "Coffee Curiosity",
+    "section": "Questions",
+    "text": "Questions\n\nDo people experience and quantify coffee’s acidity and bitterness in a way that is consistent with objective data? And do their coffee preferences affect their perception?\nDoes political affiliation play any part in coffee preference?"
   },
   {
     "objectID": "presentation.html#lightest-coffees",
@@ -152,34 +96,6 @@
     "title": "Coffee Curiosity",
     "section": "Coffee Preference by Political Party",
     "text": "Coffee Preference by Political Party\n\n\n               political_affiliation Democrat Independent No affiliation Republican\nprefer_overall                                                                     \nCoffee A                                 0.22        0.23           0.23       0.15\nCoffee B                                 0.19        0.20           0.21       0.27\nCoffee C                                 0.19        0.21           0.21       0.24\nCoffee D                                 0.41        0.35           0.35       0.34"
-  },
-  {
-    "objectID": "presentation.html#why-do-we-experience-coffee-the-way-we-do",
-    "href": "presentation.html#why-do-we-experience-coffee-the-way-we-do",
-    "title": "Coffee Curiosity",
-    "section": "Why do we experience coffee the way we do?",
-    "text": "Why do we experience coffee the way we do?\n\nTidyTuesday dataset had taste test. What is bitterness and acidity?\nOrganic acids (OA) and Chlorogenic Acids (CGA) give coffee flavor\nThere are over 50 different acids (OA and CGA) studied by Yeager et al\nEach roast and blend has its own concentration\nCGAs contribute to the acidic notes until heated then become bitter\nOAs contribute to acidic notes in coffees."
-  },
-  {
-    "objectID": "presentation.html#what-variables-are-coming-in-from-the-study",
-    "href": "presentation.html#what-variables-are-coming-in-from-the-study",
-    "title": "Coffee Curiosity",
-    "section": "What variables are coming in from the study?",
-    "text": "What variables are coming in from the study?\n\n\n [1] \"Source\"         \"Type\"           \"Roast\"          \"Extraction\"    \n [5] \"Stat\"           \"Other\"          \"Units\"          \"Citric\"        \n [9] \"Formic\"         \"Malic\"          \"Pyruvic\"        \"Quinic\"        \n[13] \"Succinic\"       \"Acetic\"         \"Oxalic\"         \"Fumaric\"       \n[17] \"Tartaric\"       \"Lactic\"         \"Glycolic\"       \"Nitric\"        \n[21] \"Mesaconic\"      \"Maleic\"         \"Isocitric\"      \"Citraconic\"    \n[25] \"Propionic\"      \"2-Furoic\"       \"Pyroglutamic\"   \"Phosphoric\"    \n[29] \"Levulinic Acid\" \"Methylsuccinic\" \"Nicotinic\"      \"Ascorbic\"      \n[33] \"Hydroxybenzoic\" \"Total\"          \"Notes\"         \n\n\n [1] \"Source\"                    \"Type\"                     \n [3] \"Roast\"                     \"Extraction\"               \n [5] \"Stats\"                     \"Other\"                    \n [7] \"Units\"                     \"total CQA\"                \n [9] \"Total FQA\"                 \"Total diCQA\"              \n[11] \"3-CQA\"                     \"4-CQA\"                    \n[13] \"5-CQA\"                     \"3-FQA\"                    \n[15] \"5-pCoQA\"                   \"5-FQA\"                    \n[17] \"Ferulic Acid\"              \"4-FQA\"                    \n[19] \"3,5-diCQA\"                 \"3,4-diCQA\"                \n[21] \"4,5-DiCQA\"                 \"3-pCo,5-CQA\"              \n[23] \"3-C,4-FQA\"                 \"3-C,5-FQA\"                \n[25] \"4,5-FQA\"                   \"3-C,4-FQA and 3-pCo,4-CQA\"\n[27] \"3-C,5-DQA\"                 \"3-C,4-DQA\"                \n[29] \"3-D,5-FQA\"                 \"Nicotinic Acid\"           \n[31] \"3-CGA\"                     \"Total CGA\"                \n[33] \"Notes\""
-  },
-  {
-    "objectID": "presentation.html#wrap-up",
-    "href": "presentation.html#wrap-up",
-    "title": "Coffee Curiosity",
-    "section": "Wrap up",
-    "text": "Wrap up\nYeager, S. E., Batali, M. E., Guinard, J. X., & Ristenpart, W. D. (2021). Acids in coffee: A review of sensory measurements and meta-analysis of chemical composition. Critical Reviews in Food Science and Nutrition, 63(8), 1010–1036. https://doi.org/10.1080/10408398.2021.1957767"
-  },
-  {
-    "objectID": "presentation.html#questions",
-    "href": "presentation.html#questions",
-    "title": "Coffee Curiosity",
-    "section": "Questions",
-    "text": "Questions\n\nDo people experience and quantify coffee’s acidity and bitterness in a way that is consistent with objective data? And do their coffee preferences affect their perception?\nDoes political affiliation play any part in coffee preference?"
   },
   {
     "objectID": "presentation.html#conclusions",
