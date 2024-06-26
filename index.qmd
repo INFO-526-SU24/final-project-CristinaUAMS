@@ -19,10 +19,7 @@ execute:
 
 # Abstract
 
-This study examines a group of people who participated in a taste test of coffee and their experience of coffee flavors. In the course of the taste test, the participants were asked to voluntarily fill out information about up to 4 coffees labeled A, B, C, and D as well as their demographics. For each coffee, the participant could score its acidity and bitterness, give it a score and finally choose their favorite if they had one. This revealed a lot of interesting data not the least of which was that people often rank acidity and bitterness of the same coffees differently. 
-In order to better understand how people actually taste coffee, it is necessary to understand what contributes to the flavors of coffee. In their paper, [Acids in coffee: A review of sensory measurements and meta-analysis of chemical composition, Yeager et al](https://www.tandfonline.com/doi/figure/10.1080/10408398.2021.1957767?) describe how the variety of different acids contained within the coffee beans contribute to the overall flavor profiles of, not only different roasts, but different species of beans and different brewing methods as well. They describe how, to human senses, the acids in coffee make up 5 - 11% of the mass of each bean and are the most significant contributor to quality and flavor of coffee with even small changes largely impacting flavor profiles.
-The acids are broken down into two main categories, organic acids (OAs) and chlorogenic acids (CGAs). 38 organic acids have been identified in beans with sucrose as the precursor in the green (unroasted) bean. During the roasting process, chemical reactions increase the organic acids (leading to higher organic acids in darker roasted coffees and lower sucrose levels). There have been over 30 CGAs (broken down into several other categories) identified as well. In its raw state, these contribute to the acidity of coffee but as it is roasted, they breakdown and contribute to the bitter flavor of coffee. 
-As noted by Yeager et al, there are no universally recognized thresholds for which roast belongs to which category which can complicate efforts to determine how people experience different roasts and flavors in addition to individual differences in quantifying flavor and simply different palates. 
+This study examines a group of people who participated in a taste test of coffee and their experience of coffee flavors. In the course of the taste test, the participants were asked to voluntarily fill out information about up to 4 coffees labeled A, B, C, and D as well as their demographics. For each coffee, the participant could score its acidity and bitterness, give it a score and finally choose their favorite if they had one. This revealed a lot of interesting data not the least of which was that people often rank acidity and bitterness of the same coffees differently. In order to better understand how people actually taste coffee, it is necessary to understand what contributes to the flavors of coffee. In their paper, [Acids in coffee: A review of sensory measurements and meta-analysis of chemical composition, Yeager et al](https://www.tandfonline.com/doi/figure/10.1080/10408398.2021.1957767?) describe how the variety of different acids contained within the coffee beans contribute to the overall flavor profiles of, not only different roasts, but different species of beans and different brewing methods as well. They describe how, to human senses, the acids in coffee make up 5 - 11% of the mass of each bean and are the most significant contributor to quality and flavor of coffee with even small changes largely impacting flavor profiles. The acids are broken down into two main categories, organic acids (OAs) and chlorogenic acids (CGAs). 38 organic acids have been identified in beans with sucrose as the precursor in the green (unroasted) bean. During the roasting process, chemical reactions increase the organic acids (leading to higher organic acids in darker roasted coffees and lower sucrose levels). There have been over 30 CGAs (broken down into several other categories) identified as well. In its raw state, these contribute to the acidity of coffee but as it is roasted, they breakdown and contribute to the bitter flavor of coffee. As noted by Yeager et al, there are no universally recognized thresholds for which roast belongs to which category which can complicate efforts to determine how people experience different roasts and flavors in addition to individual differences in quantifying flavor and simply different palates.
 
 ```{r}
 #| label: load-packages
@@ -66,15 +63,15 @@ coffeeAcidityCGA <- readr::read_csv(here("data/Acids_in_Coffee_-CGAs.csv"))
 coffeeAcidityOA <- readr::read_csv(here("data/Acids_in_Coffee_-OAs.csv"))
 
 ```
-There are three different datasets from 2 sources. 
-The [Coffee Taste Test Data](https://github.com/rfordatascience/tidytuesday/master/data/2024/2024-05-14) was compiled by a data blogger named Robert McKeon Aloe after the "Great American Coffee Taste Test" on YouTube when viewers filled out a survey about 4 coffees they had consumed. The data was voluntary and consumers of the coffees were not compelled to fill in all spaces or try all coffees so there are many NA entries but they did collect a lot of data from the viewers on both their tastes as well as demographics which makes this a great dataset.
-The columns contained within this dataset are: 
+
+There are three different datasets from 2 sources. The [Coffee Taste Test Data](https://github.com/rfordatascience/tidytuesday/master/data/2024/2024-05-14) was compiled by a data blogger named Robert McKeon Aloe after the "Great American Coffee Taste Test" on YouTube when viewers filled out a survey about 4 coffees they had consumed. The data was voluntary and consumers of the coffees were not compelled to fill in all spaces or try all coffees so there are many NA entries but they did collect a lot of data from the viewers on both their tastes as well as demographics which makes this a great dataset. The columns contained within this dataset are:
+
 ```{r, echo=FALSE}
 colnames(coffeeData)
 ```
 
-The next two datasets are the chlorogenic acids and organic acids by coffee species, roast and extraction type from Yeager et all. These are very large datasets with much more information than will provide insight into the taste test data so it will need to be cleaned up.
-The columns contained within the Organic Acids Data:
+The next two datasets are the chlorogenic acids and organic acids by coffee species, roast and extraction type from Yeager et all. These are very large datasets with much more information than will provide insight into the taste test data so it will need to be cleaned up. The columns contained within the Organic Acids Data:
+
 ```{r, echo=FALSE}
 CGA <- coffeeAcidityCGA[1:33] 
 
@@ -89,8 +86,8 @@ cga_by_roast <- CGA |>
 colnames(OA)
 ```
 
-
 The columns contained within the Chlorogenic Acids Data:
+
 ```{r, echo=FALSE}
 colnames(CGA)
 ```
@@ -98,6 +95,7 @@ colnames(CGA)
 ## Basic information
 
 After quite a bit of cleaning up data, the relevant data to make some assessments of coffee is achieved. Important points to note are levels of CGA, the lower they get, the more likely the coffee is to be bitter, the higher the total acids remaining, that will contribute to overall acid flavors in the coffee as well as the standard deviations of the organic acids and the chlorogenic acids. Because the study by Yeager et al looked at so many variables and some of that information was not available from the taste test, it is important to consider how much variability there could be within each roast's flavor profiles.
+
 ```{r}
 oa_by_roast <- OA |>
   group_by(Roast) |>
@@ -233,18 +231,21 @@ select_coffee_data |>
 # Questions
 
 ## Question 1
+
 ### Do people experience and quantify coffee's acidity and bitterness in a way that is consistent with objective data? Do their coffee preferences affect their perception?
 
 #### The idea
-People all have different likes and dislikes so it seemed interesting to examine the idea of whether people tasted similar things when they sipped their coffee. Does each person's experience of acidity and bitterness have something in common with each other person's? Taking that a step further, do the flavor profiles of the coffee a person prefers reflect on a person's ability to "correctly" understand or interpret acidity or bitterness in coffee? 
+
+People all have different likes and dislikes so it seemed interesting to examine the idea of whether people tasted similar things when they sipped their coffee. Does each person's experience of acidity and bitterness have something in common with each other person's? Taking that a step further, do the flavor profiles of the coffee a person prefers reflect on a person's ability to "correctly" understand or interpret acidity or bitterness in coffee?
 
 #### The method
-Coffee's acidity and bitterness (OA and CGA levels) can vary within species and roast depending on a number of factors not reported by the taste testers (extraction method, exact roast level, species) which leads to some uncertainty in what the expected results are for the taste test. Given that the tasters were asked to rank on a scale from one to 5, however and the flavor profiles for specific roasts are generally known (within the standard deviation), I determined that the most likely method of determining "correctness" was to select the two bars the tasters would be expected to select based on the average acid profile of that roast and the standard deviation. Then, to determine which preference group was correct most often, summed along acids and bitterness and got a cumulative percent correct for each. I thought it was interesting to note those people who chose either not to try each particular coffee or to not rank it so I included the no answers often times, those same people chose no favorite but did weigh in on some of the other coffees (as any rows of no answers were removed entirely).    
+
+Coffee's acidity and bitterness (OA and CGA levels) can vary within species and roast depending on a number of factors not reported by the taste testers (extraction method, exact roast level, species) which leads to some uncertainty in what the expected results are for the taste test. Given that the tasters were asked to rank on a scale from one to 5, however and the flavor profiles for specific roasts are generally known (within the standard deviation), I determined that the most likely method of determining "correctness" was to select the two bars the tasters would be expected to select based on the average acid profile of that roast and the standard deviation. Then, to determine which preference group was correct most often, summed along acids and bitterness and got a cumulative percent correct for each. I thought it was interesting to note those people who chose either not to try each particular coffee or to not rank it so I included the no answers often times, those same people chose no favorite but did weigh in on some of the other coffees (as any rows of no answers were removed entirely).
 
 ::: panel-tabset
 ## Green Roast
 
-```{r} 
+```{r}
 select_coffee_data |> 
   select(coffee_d_acidity, coffee_d_bitterness, prefer_overall) |>
   pivot_longer(!prefer_overall, 
@@ -257,11 +258,11 @@ select_coffee_data |>
               (flavor_profile == "coffee_d_acidity" & rating %in% c(4, 5))|
                 (flavor_profile == "coffee_d_bitterness" & rating %in% c(1, 2)),
                "turquoise2",  NA ))),
-           position = "dodge", linewidth = 1) +
+           position = "dodge", linewidth = .8) +
   annotate(geom = "table",
            x = 0, y = 750,
            label = list(green_table),
-           hjust = 0.8, vjust = 0.3, ) +
+           hjust = 1, vjust = -.1, ) +
  guides(
   color = "none"
     ) +
@@ -282,7 +283,9 @@ select_coffee_data |>
     title = "Green/ Unwashed"
   )
 ```
+
 ## Light Roast
+
 ```{r}
 select_coffee_data |> 
   select(coffee_a_acidity, coffee_a_bitterness, prefer_overall) |>
@@ -296,7 +299,7 @@ select_coffee_data |>
                (flavor_profile == "coffee_a_acidity" & rating %in% c(4,5))|
                 (flavor_profile == "coffee_a_bitterness" & rating %in% c(1,2)),
                "turquoise2",  NA ))),
-           position = "dodge", linewidth = 1) +
+           position = "dodge", linewidth = .8) +
  
  guides(
   color = "none"
@@ -310,7 +313,7 @@ select_coffee_data |>
   annotate(geom = "table",
            x =0, y = 750,
            label = list(light_table),
-           hjust = 0.8, vjust = 0.3, ) +
+         hjust = 1, vjust = -.1,  ) +
   scale_color_identity() +
   coord_flip() +
   scale_fill_paletteer_d("palettetown::zigzagoon", 
@@ -323,7 +326,9 @@ select_coffee_data |>
   )
 
 ```
+
 ## Medium Roast
+
 ```{r}
 select_coffee_data |> 
   select(coffee_b_acidity, coffee_b_bitterness, prefer_overall) |>
@@ -337,11 +342,11 @@ select_coffee_data |>
               (flavor_profile == "coffee_b_acidity" & rating %in% c(2, 3))|
                 (flavor_profile == "coffee_b_bitterness" & rating %in% c(3, 4)),
                "turquoise2",  NA ))),
-           position = "dodge", linewidth = 1) +
+           position = "dodge", linewidth = .8) +
   annotate(geom = "table",
            x =0, y = 750,
            label = list(medium_table),
-           hjust = 0.8, vjust = 0.3, ) +
+           hjust = 1, vjust = -.1, ) +
  guides(
   color = "none"
     ) +
@@ -379,11 +384,11 @@ select_coffee_data |>
               (flavor_profile == "coffee_c_acidity" & rating %in% c(2, 3))|
                 (flavor_profile == "coffee_c_bitterness" & rating %in% c(4,5)),
                "turquoise2",  NA ))),
-           position = "dodge", linewidth = 1) +
+           position = "dodge", linewidth = .8) +
   annotate(geom = "table",
            x =0, y = 750,
            label = list(dark_table),
-           hjust = 0.8, vjust = 0.3, ) +
+           hjust = 1, vjust = -.1, ) +
  guides(
   color = "none"
     ) +
@@ -404,6 +409,7 @@ select_coffee_data |>
     title = "Dark Roast"
   )
 ```
+
 ## Who is right?
 
 ```{r}
@@ -454,18 +460,22 @@ judgement_day[complete.cases(judgement_day),] |>
 :::
 
 #### Discussion
-When it comes to accurately determining coffee's acidity, it seems that people of all coffee preferences had roughly the same judgement, just under two-thirds were correct in their assessments. When it comes to judging a coffee's bitterness, it seems that those who prefer the lighter roasts (green and light) were slightly more accurate. However, there does also appear to be some unexpected lightness to the dark roast coffee sampled by the tasters. This could have some impact on the data reported here. 
 
-An interesting future study would involve actual measurement of the OAs and CGAs of several blends and roasts and repeating the experiment for increased accuracy. Overall, this seems not too far off the mark given how much variation there can be between different people's tastes. 
+When it comes to accurately determining coffee's acidity, it seems that people of all coffee preferences had roughly the same judgement, just under two-thirds were correct in their assessments. When it comes to judging a coffee's bitterness, it seems that those who prefer the lighter roasts (green and light) were slightly more accurate. However, there does also appear to be some unexpected lightness to the dark roast coffee sampled by the tasters. This could have some impact on the data reported here.
+
+An interesting future study would involve actual measurement of the OAs and CGAs of several blends and roasts and repeating the experiment for increased accuracy. Overall, this seems not too far off the mark given how much variation there can be between different people's tastes.
 
 ## Question 2
-###  Does political affiliation play any part in coffee preference?
+
+### Does political affiliation play any part in coffee preference?
 
 #### The idea
+
 This is a straightforward enough question but there are quite a few studies which show that voting preference has much to do with how people's [brains work](https://theconversation.com/neuroscience-can-explain-why-voting-is-so-often-driven-by-emotion-231469). Aside from simply an entertaining question, it seemed possible that whatever does drive that bit that encourages us to vote in one way or another might drive us to choose a coffee that tastes one way or another. Do people who want to be angry all the time want to drink a more bitter brew?
 
 #### The method
-In this case, all that was required was to take the respondent's word for which political party they belong to and which coffee they prefer and create a proportion matrix to get exact percents. A mosaic plot renders a lovely visual. 
+
+In this case, all that was required was to take the respondent's word for which political party they belong to and which coffee they prefer and create a proportion matrix to get exact percents. A mosaic plot renders a lovely visual.
 
 ```{r}
 
@@ -496,6 +506,7 @@ coffeetics |>
 ```
 
 #### Discussion
-Coffee D seems to have been the standout of the test, with coffee A getting the honorable mention. Only in the Republican group was there a different second place coffee, coffee B came in second. 
 
-There doesn't seem to be any real correlation between political party and coffee preference. It might be interesting to repeat the experiment after removing coffee D to see if the trend grew with Republicans specifically preferring a unique coffee when compared with everyone else. Alternatively, expanding coffee preference might give interesting results as well. 
+Coffee D seems to have been the standout of the test, with coffee A getting the honorable mention. Only in the Republican group was there a different second place coffee, coffee B came in second.
+
+There doesn't seem to be any real correlation between political party and coffee preference. It might be interesting to repeat the experiment after removing coffee D to see if the trend grew with Republicans specifically preferring a unique coffee when compared with everyone else. Alternatively, expanding coffee availability to offer more within those broad categories of roast might give interesting results as well. It is possible that this brand of coffee has one very good coffee and three which seem roughly the same.
